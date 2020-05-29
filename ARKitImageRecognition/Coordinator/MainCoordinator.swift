@@ -18,8 +18,8 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        //let vc = PTTabBarViewController.instantiate()
-        let vc = ProfileViewController.instantiate()
+        let vc = PTTabBarViewController.instantiate()
+        //let vc = ProfileViewController.instantiate()
 
         navigationController.pushViewController(vc, animated: false)
     }

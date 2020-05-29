@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
         navigationController?.isNavigationBarHidden = true
         
         profileHeaderView.layer.borderWidth = 3
-        profileHeaderView.layer.borderColor = UIColor.red.cgColor//UIColor.init(red: 232, green: 237, blue: 244, alpha: 1.0).cgColor
+        profileHeaderView.layer.borderColor = UIColor.lightGray.cgColor//UIColor.init(red: 232, green: 237, blue: 244, alpha: 1.0).cgColor
 
         // Do any additional setup after loadings the view.
         getProfileImage()
@@ -60,6 +60,7 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
     
     func getProfileImage() {
         self.profileImageView.sd_setImage(with: FirebaseServices.shared.profileRef)
+        
     }
     
 
