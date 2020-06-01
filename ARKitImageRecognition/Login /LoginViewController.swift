@@ -10,14 +10,19 @@ import UIKit
 import FirebaseAuth
 import FirebaseUI
 import FBSDKLoginKit
+import RxSwift
 
 class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var facebookLoginButton: UIButton!
+    @IBOutlet weak var emailValidationImageView: UIImageView!
     
     weak var coordinator: LoginCoordinator?
+    
+    private var loginViewModel: LoginViewModel!
+    private let disposeBag = DisposeBag()
     
     var authUI = FUIAuth.defaultAuthUI()
 
@@ -37,9 +42,20 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
         ]
         self.authUI?.providers = providers
         
-        //self.present(authUI?.authViewController() ?? nil, animated: true, completion: nil)
+        loginViewModel = LoginViewModel()
         
-        //fb
+        emailTextField.rx
+            .text
+            .orEmpty
+            .bind(to: loginViewModel.emailTextFieldPublishSubject)
+            .disposed(by: disposeBag)
+        passwordTextField.rx
+            .text
+            .orEmpty
+            .bind(to: loginViewModel.passwordTextFieldPublishSubject)
+            .disposed(by: disposeBag)
+        
+        loginViewModel.isValid().bind(to: emailValidationImageView.rx.isHidden).disposed(by: disposeBag)
 
 
     }

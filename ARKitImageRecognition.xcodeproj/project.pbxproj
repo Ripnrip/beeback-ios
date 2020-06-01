@@ -19,6 +19,8 @@
 		8411BB7C20CDFD66009E37AD /* Cadnav.com_B120212390.stl in Resources */ = {isa = PBXBuildFile; fileRef = 8411BB7720CDFD66009E37AD /* Cadnav.com_B120212390.stl */; };
 		841365042476C74E00AA8CA9 /* OnboardingUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841365032476C74E00AA8CA9 /* OnboardingUserInfo.swift */; };
 		8413650624775E0D00AA8CA9 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */; };
+		8431DE2D2484F9FE003FA0DB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */; };
+		8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */; };
 		844DD1C4247A341300DDB649 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DD1C3247A341300DDB649 /* FirebaseServices.swift */; };
 		84577BC5242FD5AA005E84AC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC4242FD5AA005E84AC /* Coordinator.swift */; };
 		84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */; };
@@ -86,6 +88,8 @@
 		8411BB7720CDFD66009E37AD /* Cadnav.com_B120212390.stl */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cadnav.com_B120212390.stl; sourceTree = "<group>"; };
 		841365032476C74E00AA8CA9 /* OnboardingUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingUserInfo.swift; path = ARKitImageRecognition/Helper/OnboardingUserInfo.swift; sourceTree = SOURCE_ROOT; };
 		8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
+		8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		844DD1C3247A341300DDB649 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseServices.swift; path = ../../../../Desktop/FirebaseServices.swift; sourceTree = "<group>"; };
 		84577BC4242FD5AA005E84AC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extensions.swift"; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 			children = (
 				84577BC9242FD998005E84AC /* LoginViewController.swift */,
 				84577BCF242FE21A005E84AC /* LoginNavigatonViewController.swift */,
+				8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */,
 			);
 			path = "Login ";
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				84E19FC324564DF00058D24A /* OnboardingViewController.swift */,
+				8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -624,6 +630,7 @@
 				8493FB2D2443FA4400083350 /* UIColor+Extension.swift in Sources */,
 				8493FB2B2443F8CE00083350 /* TutorialViewController.swift in Sources */,
 				84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */,
+				8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */,
 				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
 				841365042476C74E00AA8CA9 /* OnboardingUserInfo.swift in Sources */,
 				844DD1C4247A341300DDB649 /* FirebaseServices.swift in Sources */,
@@ -632,6 +639,7 @@
 				846AC1A424776172003184DF /* RxMediaPickerDelegate.swift in Sources */,
 				84577BD0242FE21A005E84AC /* LoginNavigatonViewController.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
+				8431DE2D2484F9FE003FA0DB /* OnboardingViewModel.swift in Sources */,
 				848C8D822475780300CEFA19 /* UIImage+Extensions.swift in Sources */,
 				849220BF2410CE7200109141 /* LabelViewController.swift in Sources */,
 				84577BC5242FD5AA005E84AC /* Coordinator.swift in Sources */,
