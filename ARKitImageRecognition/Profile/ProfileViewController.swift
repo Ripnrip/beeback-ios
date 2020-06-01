@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
     
     private let disposeBag = DisposeBag()
     
-    var trophies:[TrophyItem] = [TrophyItem(image: #imageLiteral(resourceName: "whiskeyTrophy"), title: "BUBULOUS", earnedDate: "Earned 12/24/2019"),TrophyItem(image: #imageLiteral(resourceName: "ideaTrophy"), title: "CRYPTOGROPHER", earnedDate: "Earned 12/24/2019")]
+    var trophies:[TrophyItem] = [TrophyItem(image: #imageLiteral(resourceName: "whiskeyTrophy"), title: "BUBULOUS", earnedDate: "Earned 12/24/2019"),TrophyItem(image: #imageLiteral(resourceName: "ideaTrophy"), title: "CRYPTOGROPHER", earnedDate: "Earned 12/24/2019"),TrophyItem(image: #imageLiteral(resourceName: "colonizerTrophy"), title: "COLONIZER", earnedDate: "Earned 12/24/2019")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
