@@ -130,12 +130,16 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
               
               // 3
               loginManager.logIn(permissions: ["email"], from: self) { [weak self] (result, error) in
+                guard let self = self else { return }
                   
                   // 4
                   // Check for error
                   guard error == nil else {
                       // Error occurred
                       print(error!.localizedDescription)
+                      self.alert(title: "Error", message: error?.localizedDescription)
+                      .subscribe()
+                      .disposed(by: self.disposeBag)
                       return
                   }
                   
@@ -143,6 +147,9 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                   // Check for cancel
                   guard let result = result, !result.isCancelled else {
                       print("User cancelled login")
+                    self.alert(title: "Error", message: "User cancelled login")
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
                       return
                   }
                 
@@ -178,11 +185,14 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                     // Successfully logged in
                     // 7
                     //self?.updateButton(isLoggedIn: true)
-                        self?.coordinator?.userSignedIn(withUserInfo: userInfo)
+                        self.coordinator?.userSignedIn(withUserInfo: userInfo)
                         
                     }
                     else {
                         print("error \(error)")
+                        self.alert(title: "Error", message: error?.localizedDescription)
+                        .subscribe()
+                        .disposed(by: self.disposeBag)
                     }
                 }
                   // 7
