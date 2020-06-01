@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseUI
 import FBSDKLoginKit
+import RxUIAlert
 import RxSwift
 
 class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
@@ -56,10 +57,36 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
             .disposed(by: disposeBag)
         
         loginViewModel.isValid().bind(to: emailValidationImageView.rx.isHidden).disposed(by: disposeBag)
+        
+        Observable
+            .combineLatest(emailTextField.rx.controlEvent([.editingDidBegin]).asObservable(), passwordTextField.rx.controlEvent([.editingDidBegin]).asObservable()).subscribe { _ in
+                self.animateViewMoving(true, moveValue: 180)
+        }.disposed(by: disposeBag)
 
+        Observable
+            .combineLatest(emailTextField.rx.controlEvent([.editingDidEnd]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEnd]).asObservable()).subscribe { _ in
+                self.animateViewMoving(false, moveValue: 180)
+        }.disposed(by: disposeBag)
+        
+        Observable
+            .combineLatest(emailTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable()).subscribe { _ in
+                self.view.endEditing(true)
+        }.disposed(by: disposeBag)
 
     }
 
+    func animateViewMoving (_ up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+
+        self.loginView.frame = self.loginView.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
+    
     @IBAction func signIn(_ sender: Any) {
         guard let text = emailTextField.text, let password = passwordTextField.text else { return }
 
@@ -73,15 +100,16 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
             if let error = error {
                 //self.showMessagePrompt(error.localizedDescription)
                 print(error.localizedDescription)
+                self.alert(title: "Error",
+                message: error.localizedDescription)
+                .subscribe()
+                .disposed(by: self.disposeBag)
                 return
             }
             print("the auth result is \(String(describing: authResult))")
             UserDefaults.standard.set(text, forKey: "Email")
             self.coordinator?.userSignedIn(withUserInfo: OnboardingUserInfo(email:text))
         }
-
-    
-
     }
     
     
@@ -157,7 +185,6 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                         print("error \(error)")
                     }
                 }
-
                   // 7
                   //Profile.loadCurrentProfile { (profile, error) in
                   //    self?.updateMessage(with: Profile.current?.name)
@@ -165,36 +192,4 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
               }
           }
     }
-    
-    
-}
-
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextField || textField == passwordTextField {
-            animateViewMoving(true, moveValue: 180)
-        }
-    }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == emailTextField || textField == passwordTextField {
-            animateViewMoving(false, moveValue: 180)
-        }
-    }
-    func animateViewMoving (_ up:Bool, moveValue :CGFloat){
-        let movementDuration:TimeInterval = 0.3
-        let movement:CGFloat = ( up ? -moveValue : moveValue)
-
-        UIView.beginAnimations("animateView", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-
-        self.loginView.frame = self.loginView.frame.offsetBy(dx: 0, dy: movement)
-        UIView.commitAnimations()
-    }
-
 }
