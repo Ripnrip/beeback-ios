@@ -21,7 +21,6 @@
 		8413650624775E0D00AA8CA9 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */; };
 		8431DE2D2484F9FE003FA0DB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */; };
 		8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */; };
-		844DD1C4247A341300DDB649 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844DD1C3247A341300DDB649 /* FirebaseServices.swift */; };
 		84577BC5242FD5AA005E84AC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC4242FD5AA005E84AC /* Coordinator.swift */; };
 		84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */; };
 		84577BCA242FD998005E84AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC9242FD998005E84AC /* LoginViewController.swift */; };
@@ -58,6 +57,7 @@
 		8493FB502444004800083350 /* Poppins-SemiBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8493FB332443FE8900083350 /* Poppins-SemiBoldItalic.otf */; };
 		8493FB512444004800083350 /* Poppins-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8493FB3F2443FE8A00083350 /* Poppins-Thin.otf */; };
 		8493FB522444004800083350 /* Poppins-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8493FB342443FE8900083350 /* Poppins-ThinItalic.otf */; };
+		84B6637A248525ED007CF171 /* FirebaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B66379248525ED007CF171 /* FirebaseServices.swift */; };
 		84E19FC424564DF00058D24A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E19FC324564DF00058D24A /* OnboardingViewController.swift */; };
 		84E19FC6245651900058D24A /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E19FC5245651900058D24A /* OnboardingCoordinator.swift */; };
 		84FDF9DB247E61A200C429F4 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FDF9DA247E61A200C429F4 /* ProfileCoordinator.swift */; };
@@ -90,7 +90,6 @@
 		8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
 		8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		844DD1C3247A341300DDB649 /* FirebaseServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseServices.swift; path = ../../../../Desktop/FirebaseServices.swift; sourceTree = "<group>"; };
 		84577BC4242FD5AA005E84AC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extensions.swift"; sourceTree = "<group>"; };
 		84577BC9242FD998005E84AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +126,7 @@
 		8493FB3E2443FE8A00083350 /* Poppins-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.otf"; sourceTree = "<group>"; };
 		8493FB3F2443FE8A00083350 /* Poppins-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.otf"; sourceTree = "<group>"; };
 		8493FB402443FE8A00083350 /* Poppins-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.otf"; sourceTree = "<group>"; };
+		84B66379248525ED007CF171 /* FirebaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseServices.swift; sourceTree = "<group>"; };
 		84E19FC324564DF00058D24A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		84E19FC5245651900058D24A /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		84FDF9DA247E61A200C429F4 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 		844DD1C2247A33F500DDB649 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				844DD1C3247A341300DDB649 /* FirebaseServices.swift */,
+				84B66379248525ED007CF171 /* FirebaseServices.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -635,8 +635,8 @@
 				8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */,
 				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
 				841365042476C74E00AA8CA9 /* OnboardingUserInfo.swift in Sources */,
-				844DD1C4247A341300DDB649 /* FirebaseServices.swift in Sources */,
 				849220BE2410CE7200109141 /* PTTabBarViewController.swift in Sources */,
+				84B6637A248525ED007CF171 /* FirebaseServices.swift in Sources */,
 				84E19FC6245651900058D24A /* OnboardingCoordinator.swift in Sources */,
 				846AC1A424776172003184DF /* RxMediaPickerDelegate.swift in Sources */,
 				84577BD0242FE21A005E84AC /* LoginNavigatonViewController.swift in Sources */,

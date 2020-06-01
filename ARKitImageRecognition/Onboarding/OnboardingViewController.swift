@@ -48,6 +48,8 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
         guard let currentUserInfo = currentUserInfo else { return }
         onboardingViewModel = OnboardingViewModel(user: currentUserInfo)
         
+        FirebaseServices.shared.isUserNameValid(username: "")
+        
         getProfileImage()
         profileImageButton.addTarget(self, action: #selector(pickPhoto), for: .touchUpInside)
         
@@ -122,6 +124,7 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
             }, completion: nil)
         }
     }
+    
     @objc func pickPhoto() {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -184,13 +187,29 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
 
     }
     
+    //TODO: Move THIS LOGIC up to the coordinator
     @IBAction func continueButton(_ sender: Any) {
-        //set everything in firebase
-        let profileImage = self.profileImageButton.currentBackgroundImage ?? nil
-        FirebaseServices.shared.setProfilePhotoForUser(image: profileImage)
-        FirebaseServices.shared.updateInfoForUser(firstName: firstNameTextField.text, lastName: lastNameTextField.text, email: emailTextField.text, birthDate: dateOfBirthPicker.date, userName: usernameTextField.text)
-        //continue to home page
-        coordinator?.userFinishedSetup()
+        //if usernameIsUnique
+        FirebaseServices.shared.isUserNameValid(username: usernameTextField.text ?? "")
+            .subscribe(onSuccess: { [weak self] isValid in
+                guard let self = self else { return }
+                if isValid {
+                    //set everything in firebase
+                    let profileImage = self.profileImageButton.currentBackgroundImage ?? nil
+                    FirebaseServices.shared.setProfilePhotoForUser(image: profileImage)
+                    FirebaseServices.shared.updateInfoForUser(firstName: self.firstNameTextField.text, lastName: self.lastNameTextField.text, email: self.emailTextField.text, birthDate: self.dateOfBirthPicker.date, userName: self.usernameTextField.text)
+                    //continue to home page
+                    self.coordinator?.userFinishedSetup()
+                } else {
+                    //username has been taken before
+                    self.alert(title: "Error", message: "That username is taken, please try another one")
+                    .subscribe()
+                    .disposed(by: self.disposeBag)
+                    
+                }
+            }).disposed(by: disposeBag)
+        
+
         
     }
 }
