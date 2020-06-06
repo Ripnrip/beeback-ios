@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
     @IBOutlet weak var profileHeaderView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var editProfileButton: UIButton!
     
     private let disposeBag = DisposeBag()
     

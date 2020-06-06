@@ -858,6 +858,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="collectionView" destination="csZ-e0-ZZp" id="raD-kN-NzZ"/>
+                        <outlet property="editProfileButton" destination="AVj-zL-dim" id="InY-iz-owX"/>
                         <outlet property="nameLabel" destination="dr0-bT-V4L" id="fuU-dm-ntf"/>
                         <outlet property="profileHeaderView" destination="lKl-5Y-K59" id="nqL-Uw-YeD"/>
                         <outlet property="profileImageView" destination="xZu-Fe-4VD" id="WYU-tu-Pjh"/>
@@ -895,7 +896,7 @@
                                 <rect key="frame" x="9" y="165" width="405" height="260"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanBee" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-RB-ux8">
-                                <rect key="frame" x="112" y="362" width="284" height="66"/>
+                                <rect key="frame" x="254" y="362" width="142" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="g4v-OU-6gf"/>
                                 </constraints>
@@ -965,7 +966,7 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenCheckBox" translatesAutoresizingMaskIntoConstraints="NO" id="XxK-OH-LxS">
-                                        <rect key="frame" x="315" y="31" width="30" height="30"/>
+                                        <rect key="frame" x="315" y="31" width="30.000000000000028" height="30.000000000000028"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="Qya-sW-7m3"/>
                                             <constraint firstAttribute="height" constant="30" id="hpe-YG-wK6"/>

@@ -19,4 +19,5 @@ target 'ARKitImageRecognition' do
    pod 'RxCocoa'
    pod 'RxFirebase'
    pod 'RxUIAlert'
+   pod 'SwiftyGif'
 end
