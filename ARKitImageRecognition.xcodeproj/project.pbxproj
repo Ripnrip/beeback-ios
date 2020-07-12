@@ -21,6 +21,10 @@
 		8413650624775E0D00AA8CA9 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */; };
 		8431DE2D2484F9FE003FA0DB /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */; };
 		8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */; };
+		844755BA248B55F100399032 /* retroFuturisticBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 844755B9248B55F100399032 /* retroFuturisticBackground.gif */; };
+		844755BC248B56FF00399032 /* futuristicRetroBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 844755BB248B56FF00399032 /* futuristicRetroBackground.gif */; };
+		844755BF248B5EF900399032 /* loginBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 844755BE248B5EF900399032 /* loginBackground.mp3 */; };
+		844755C1248B606600399032 /* profileBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 844755C0248B606600399032 /* profileBackground.gif */; };
 		84577BC5242FD5AA005E84AC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC4242FD5AA005E84AC /* Coordinator.swift */; };
 		84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */; };
 		84577BCA242FD998005E84AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84577BC9242FD998005E84AC /* LoginViewController.swift */; };
@@ -90,6 +94,10 @@
 		8413650524775E0C00AA8CA9 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
 		8431DE2C2484F9FD003FA0DB /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		844755B9248B55F100399032 /* retroFuturisticBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = retroFuturisticBackground.gif; sourceTree = "<group>"; };
+		844755BB248B56FF00399032 /* futuristicRetroBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = futuristicRetroBackground.gif; sourceTree = "<group>"; };
+		844755BE248B5EF900399032 /* loginBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loginBackground.mp3; sourceTree = "<group>"; };
+		844755C0248B606600399032 /* profileBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = profileBackground.gif; sourceTree = "<group>"; };
 		84577BC4242FD5AA005E84AC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		84577BC7242FD7D4005E84AC /* Storyboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extensions.swift"; sourceTree = "<group>"; };
 		84577BC9242FD998005E84AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +172,8 @@
 		1488324C1EFC3ED00043E0AB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				844755BD248B5ED900399032 /* Audio */,
+				844755B8248B55E000399032 /* Gifs */,
 				8493FB2E2443FE7000083350 /* Fonts */,
 				84577BD1242FED09005E84AC /* GoogleService-Info.plist */,
 				3929C4921E89EC2C00E00B60 /* Assets.xcassets */,
@@ -248,6 +258,24 @@
 				8431DE2E2484FF2F003FA0DB /* LoginViewModel.swift */,
 			);
 			path = "Login ";
+			sourceTree = "<group>";
+		};
+		844755B8248B55E000399032 /* Gifs */ = {
+			isa = PBXGroup;
+			children = (
+				844755C0248B606600399032 /* profileBackground.gif */,
+				844755B9248B55F100399032 /* retroFuturisticBackground.gif */,
+				844755BB248B56FF00399032 /* futuristicRetroBackground.gif */,
+			);
+			path = Gifs;
+			sourceTree = "<group>";
+		};
+		844755BD248B5ED900399032 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				844755BE248B5EF900399032 /* loginBackground.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		844DD1C2247A33F500DDB649 /* Service */ = {
@@ -469,10 +497,12 @@
 				8493FB422444004800083350 /* Poppins-BlackItalic.otf in Resources */,
 				8493FB462444004800083350 /* Poppins-ExtraBoldItalic.otf in Resources */,
 				8473A7AE2076A9A800A34F59 /* art.scnassets in Resources */,
+				844755BF248B5EF900399032 /* loginBackground.mp3 in Resources */,
 				8493FB482444004800083350 /* Poppins-ExtraLightItalic.otf in Resources */,
 				8493FB452444004800083350 /* Poppins-ExtraBold.otf in Resources */,
 				849220BA2410C06200109141 /* BeeBackAR.png in Resources */,
 				8411BB7B20CDFD66009E37AD /* Cadnav.com_B120212390.mtl in Resources */,
+				844755BC248B56FF00399032 /* futuristicRetroBackground.gif in Resources */,
 				8493FB4D2444004800083350 /* Poppins-MediumItalic.otf in Resources */,
 				8493FB472444004800083350 /* Poppins-ExtraLight.otf in Resources */,
 				8493FB522444004800083350 /* Poppins-ThinItalic.otf in Resources */,
@@ -484,6 +514,8 @@
 				8493FB432444004800083350 /* Poppins-Bold.otf in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
 				8493FB4A2444004800083350 /* Poppins-Light.otf in Resources */,
+				844755BA248B55F100399032 /* retroFuturisticBackground.gif in Resources */,
+				844755C1248B606600399032 /* profileBackground.gif in Resources */,
 				8493FB4F2444004800083350 /* Poppins-SemiBold.otf in Resources */,
 				8493FB442444004800083350 /* Poppins-BoldItalic.otf in Resources */,
 				8493FB4C2444004800083350 /* Poppins-Medium.otf in Resources */,
@@ -788,7 +820,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5Y7NBCKHJP;
 				INFOPLIST_FILE = "$(SRCROOT)/ARKitImageRecognition/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -811,7 +843,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5Y7NBCKHJP;
 				INFOPLIST_FILE = "$(SRCROOT)/ARKitImageRecognition/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

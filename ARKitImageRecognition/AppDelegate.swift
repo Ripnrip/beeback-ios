@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainCoordinator = MainCoordinator(navigationController: navController)
 
         // tell the coordinator to take over control
-        //try! Auth.auth().signOut()
+        try! Auth.auth().signOut()
         
         if Auth.auth().currentUser == nil {
             loginCoordinator?.start()

@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwiftyGif
 
 struct TrophyItem {
     let image: UIImage
@@ -22,6 +23,7 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var profileBackgroundImageView: UIImageView!
     
     private let disposeBag = DisposeBag()
     
@@ -36,6 +38,11 @@ class ProfileViewController: UIViewController, Storyboarded, UICollectionViewDel
         
         profileHeaderView.layer.borderWidth = 3
         profileHeaderView.layer.borderColor = UIColor.lightGray.cgColor//UIColor.init(red: 232, green: 237, blue: 244, alpha: 1.0).cgColor
+        
+        ///background gif
+        let gif = try! UIImage(gifName: "profileBackground.gif")
+        profileBackgroundImageView.setGifImage(gif, loopCount: -1) // Will loop forever
+        ///
 
         // Do any additional setup after loadings the view.
         getProfileImage()

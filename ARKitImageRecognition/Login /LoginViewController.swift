@@ -6,12 +6,14 @@
 //  Copyright © 2020 Apple. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 import FirebaseAuth
 import FirebaseUI
 import FBSDKLoginKit
 import RxUIAlert
 import RxSwift
+import SwiftyGif
 
 class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,6 +21,7 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var emailValidationImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     weak var coordinator: LoginCoordinator?
     
@@ -26,6 +29,8 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
     private let disposeBag = DisposeBag()
     
     var authUI = FUIAuth.defaultAuthUI()
+    var bombSoundEffect: AVAudioPlayer?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,34 +50,61 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
         
         loginViewModel = LoginViewModel()
         
-        emailTextField.rx
-            .text
-            .orEmpty
-            .bind(to: loginViewModel.emailTextFieldPublishSubject)
-            .disposed(by: disposeBag)
-        passwordTextField.rx
-            .text
-            .orEmpty
-            .bind(to: loginViewModel.passwordTextFieldPublishSubject)
-            .disposed(by: disposeBag)
+//        emailTextField.rx
+//            .text
+//            .orEmpty
+//            .bind(to: loginViewModel.emailTextFieldPublishSubject)
+//            .disposed(by: disposeBag)
+//        passwordTextField.rx
+//            .text
+//            .orEmpty
+//            .bind(to: loginViewModel.passwordTextFieldPublishSubject)
+//            .disposed(by: disposeBag)
+//
+//        loginViewModel.isValid().bind(to: emailValidationImageView.rx.isHidden).disposed(by: disposeBag)
+//
+//        Observable
+//            .combineLatest(emailTextField.rx.controlEvent([.editingDidBegin]).asObservable(), passwordTextField.rx.controlEvent([.editingDidBegin]).asObservable()).subscribe { _ in
+//                self.animateViewMoving(true, moveValue: 180)
+//        }.disposed(by: disposeBag)
+//
+//        Observable
+//            .combineLatest(emailTextField.rx.controlEvent([.editingDidEnd]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEnd]).asObservable()).subscribe { _ in
+//                self.animateViewMoving(false, moveValue: 180)
+//        }.disposed(by: disposeBag)
+//
+//        Observable
+//            .combineLatest(emailTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable()).subscribe { _ in
+//                self.view.endEditing(true)
+//        }.disposed(by: disposeBag)
         
-        loginViewModel.isValid().bind(to: emailValidationImageView.rx.isHidden).disposed(by: disposeBag)
-        
-        Observable
-            .combineLatest(emailTextField.rx.controlEvent([.editingDidBegin]).asObservable(), passwordTextField.rx.controlEvent([.editingDidBegin]).asObservable()).subscribe { _ in
-                self.animateViewMoving(true, moveValue: 180)
-        }.disposed(by: disposeBag)
+        let path = Bundle.main.path(forResource: "loginBackground.mp3", ofType:nil)!
+        let url = URL(fileURLWithPath: path)
 
-        Observable
-            .combineLatest(emailTextField.rx.controlEvent([.editingDidEnd]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEnd]).asObservable()).subscribe { _ in
-                self.animateViewMoving(false, moveValue: 180)
-        }.disposed(by: disposeBag)
+        do {
+            bombSoundEffect = try AVAudioPlayer(contentsOf: url)
+            bombSoundEffect?.play()
+        } catch {
+            // couldn't load file :(
+        }
         
-        Observable
-            .combineLatest(emailTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable(), passwordTextField.rx.controlEvent([.editingDidEndOnExit]).asObservable()).subscribe { _ in
-                self.view.endEditing(true)
-        }.disposed(by: disposeBag)
+        //background gif
+        let gif = try! UIImage(gifName: "futuristicRetroBackground.gif")
+        self.backgroundImageView.setGifImage(gif, loopCount: -1) // Will loop forever
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.facebookLoginButton.alpha = 0
+        self.facebookLoginButton.frame = CGRect.init(x: 45, y: 1430, width: 325, height: 50)
+
+
+        UIView.animate(withDuration: 3.9) {
+            self.facebookLoginButton.alpha = 1
+            self.facebookLoginButton.frame = CGRect.init(x: 45, y: self.view.frame.height - self.view.frame.height * 0.20, width: 325, height: 50)
+        }
+        
     }
 
     func animateViewMoving (_ up:Bool, moveValue :CGFloat){
