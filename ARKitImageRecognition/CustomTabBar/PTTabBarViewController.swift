@@ -11,8 +11,8 @@ import PTCardTabBar
 class PTTabBarViewController: PTCardTabBarController, Storyboarded {
 
     override func viewDidLoad() {
-        let vc1 = LabelViewController(title: "Home")
-        let vc2 =  ViewController.instantiate()
+        let vc1 = MapViewController.instantiate()
+        let vc2 = ViewController.instantiate()
         let vc3 = ProfileViewController.instantiate()
         
         vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "map"), tag: 1)
@@ -23,6 +23,9 @@ class PTTabBarViewController: PTCardTabBarController, Storyboarded {
         vc3.tabBarItem.image = UIImage(named: "user")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
 
         self.viewControllers = [vc1, vc2, vc3]
+        
+
+        
         self.selectedIndex = 1
         super.viewDidLoad()
         
