@@ -9,8 +9,8 @@
 import UIKit
 
 class LocationContentView: NibView {
-
-
+    
+    
     
     @IBOutlet weak var locationName: UILabel!
     @IBOutlet weak var locationSubtitle: UILabel!
@@ -34,7 +34,6 @@ class LocationContentView: NibView {
     
     func additionalFormatting() {
         let cornerRadius = distance.bounds.height * 0.25
-        print("cornerRadius = \(cornerRadius)")
         distance.layer.cornerRadius = cornerRadius
         distance.layer.masksToBounds = true
     }

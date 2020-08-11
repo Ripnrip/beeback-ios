@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */; };
+		074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */; };
 		074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E3F7924DCB126006D13EA /* SearchBarView.swift */; };
 		074E3F7C24DCB145006D13EA /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074E3F7B24DCB145006D13EA /* SearchBarView.xib */; };
 		077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A2A24D8C30F009C118C /* MapViewController.swift */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinAnnotation.swift; sourceTree = "<group>"; };
 		074E3F7924DCB126006D13EA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		074E3F7B24DCB145006D13EA /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		077F2A2A24D8C30F009C118C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074D337D24E242E7007EFF78 /* CustomPinAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */,
+			);
+			path = CustomPinAnnotation;
+			sourceTree = "<group>";
+		};
 		074E3F7624DCB0D0006D13EA /* SearchBarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				077F2A2A24D8C30F009C118C /* MapViewController.swift */,
+				074D337D24E242E7007EFF78 /* CustomPinAnnotation */,
 				074E3F7D24DCBF22006D13EA /* Extension */,
 				07CAE7FD24DB8E31009C1E27 /* NibView.swift */,
 				074E3F7624DCB0D0006D13EA /* SearchBarView */,
@@ -684,6 +695,7 @@
 				3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */,
 				84E19FC424564DF00058D24A /* OnboardingViewController.swift in Sources */,
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
+				074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */,
 				84577BCC242FDA44005E84AC /* MainCoordinator.swift in Sources */,
 				84FDF9DE247E620900C429F4 /* ProfileViewController.swift in Sources */,
 				07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */,

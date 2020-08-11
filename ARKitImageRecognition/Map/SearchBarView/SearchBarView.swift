@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchBarView: NibView {
-
+    
     @IBOutlet weak var searchBarTextField: UITextField!
     
     override func awakeFromNib() {
@@ -17,12 +17,12 @@ class SearchBarView: NibView {
         searchBarFormat()
         
     }
-
+    
     func searchBarFormat() {
-                searchBarTextField.backgroundColor = UIColor.clear
-                searchBarTextField.borderStyle = .none
-                searchBarTextField.translatesAutoresizingMaskIntoConstraints = false
-                let textFieldHeight = UIScreen.main.bounds.height * 0.06
-                searchBarTextField.addConstraint(NSLayoutConstraint(item: searchBarTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
+        searchBarTextField.backgroundColor = UIColor.clear
+        searchBarTextField.borderStyle = .none
+        searchBarTextField.translatesAutoresizingMaskIntoConstraints = false
+        let textFieldHeight = UIScreen.main.bounds.height * 0.06
+        searchBarTextField.addConstraint(NSLayoutConstraint(item: searchBarTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
     }
 }

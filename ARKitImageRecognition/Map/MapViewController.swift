@@ -9,11 +9,16 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, Storyboarded {
+class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     
     //TESTING DATA
     var locationData: Array<LocationContentViewModel> = Array<LocationContentViewModel>()
-    
+    let pinImages: Array<UIImage> = [
+        UIImage(named: "locationPinPerson")!,
+        UIImage(named: "locationPinTicket")!,
+        UIImage(named: "locationPinMessage")!,
+        UIImage(named: "locationPinBook")!,
+    ]
     // END TESTING
     
     
@@ -36,13 +41,14 @@ class MapViewController: UIViewController, Storyboarded {
         registerXib()
         
         locationData = getTestData()
+        mapView.delegate = self
         generateMapPointAnnotations()
-
+        
         searchBarViewFormat()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
         tap.delegate = self
-        mapView.addGestureRecognizer(tap)
+        self.mapView.addGestureRecognizer(tap)
         
         // TODO: - Move constants to a config file
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -93,10 +99,10 @@ class MapViewController: UIViewController, Storyboarded {
         let textFieldHeight = UIScreen.main.bounds.height * 0.06
         let cornerRadius = textFieldHeight / 2
         searchBarView.addConstraint(NSLayoutConstraint(item: searchBarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
-
+        
         searchBarView.layer.cornerRadius = textFieldHeight / 2
         searchBarView.layer.masksToBounds = true
-       
+        
         searchBarShadowView = searchBarView.createShadowView(shadowOffset: .init(width: 0, height: 5), shadowRadius: 4.0, cornerRadius: cornerRadius)
         
         searchBarView.superview?.insertSubview(searchBarShadowView, belowSubview: searchBarView)
@@ -108,9 +114,14 @@ class MapViewController: UIViewController, Storyboarded {
         var totalLong: Array<CLLocationDegrees> = Array<CLLocationDegrees>()
         
         for viewmodel in locationData{
-            let pointAnnotation = MKPointAnnotation()
+            //            let pointAnnotation = MKPointAnnotation()
+            let pointAnnotation = CustomPinAnnotation()
             pointAnnotation.title = viewmodel.locationName
             pointAnnotation.coordinate = viewmodel.coordinate
+            
+            let pinImagesIndex = locationData.index(of: viewmodel)! % pinImages.count
+            pointAnnotation.image = pinImages[pinImagesIndex]
+            
             totalLat.append(viewmodel.coordinate.latitude)
             totalLong.append(viewmodel.coordinate.longitude)
             
@@ -123,7 +134,7 @@ class MapViewController: UIViewController, Storyboarded {
         )
         let coordinateSpanLat = Double(totalLat.max()! - totalLat.min()!) * 3
         let coordinateSpanLong = Double(totalLong.max()! - totalLong.min()!) * 3
-                
+        
         let coordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat, longitudeDelta: coordinateSpanLong)
         defaultCoordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat / 2, longitudeDelta: coordinateSpanLong / 2)
         
@@ -131,33 +142,64 @@ class MapViewController: UIViewController, Storyboarded {
         mapView.setRegion(initalRegion, animated: true)
     }
     
+    
+    
 }
 
 
 // MARK: MKMapViewDelegate
 
-//extension MapViewController: MKMapViewDelegate {
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard annotation is MKPointAnnotation else {
-//            print("Not a MKPointAnnotation")
-//            return nil}
-//
-//        let identifier = "Annotation"
-//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-//        print("Type of annotationView: \(type(of: annotationView))")
-//        if annotationView == nil {
-//            print("annotationView is nil")
-//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            annotationView!.canShowCallout = true
-//        } else {
-//            annotationView!.annotation = annotation
-//        }
-//
-//        return annotationView
-//    }
-//}
+extension MapViewController {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        print("viewFor MapView Triggered!")
+        if !annotation.isKind(of: CustomPinAnnotation.self){
+            var pinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "DefaultPinView")
+            
+            if pinAnnotationView == nil {
+                pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "DefaultPinView")
+            }
+            return pinAnnotationView
+        }
+        
+        var view: CustomPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: "customPinAnnotation") as? CustomPinAnnotationView
+        
+        if view == nil {
+            view = CustomPinAnnotationView(annotation: annotation, reuseIdentifier: "customPinAnnotation")
+        }
+        
+        let annotation = annotation as! CustomPinAnnotation
+        view?.image = annotation.image
+        view?.annotation = annotation
+        
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.setRegion(MKCoordinateRegion(center: view.annotation!.coordinate, span: defaultCoordinateSpan), animated: true)
+        UIView.animate(withDuration: 0.2,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                        view.centerOffset = CGPoint(x: 0, y: -view.frame.size.height / 2)
+        })
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        UIView.animate(withDuration: 0.2,
+                       delay: 0.0,
+                       options: .curveEaseInOut,
+                       animations: {
+                        view.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        view.centerOffset = CGPoint(x: 0, y: -view.frame.size.height / 2)
+        })
+    }
+    
+}
 
 // MARK: UIGestureRecognizerDelegate
+
+// TODO: - Need to adjust gestureRecognizer to not hide searchbar and collectionview when selecting a pin
 extension MapViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
@@ -181,7 +223,7 @@ extension MapViewController: UIGestureRecognizerDelegate {
             mapReceivedDoubleTap = false
             return
         }
-
+        
         if searchBarView.isHidden {
             searchBarView.slideIn()
             searchBarShadowView.slideIn()
@@ -210,11 +252,6 @@ extension MapViewController: UICollectionViewDataSource {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath)
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    //        let cell = cell as! CardCollectionViewCell
-    //        cell.cardContentView.viewModel = locationData[indexPath.row]
-    //    }
-    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let cell = cell as! LocationCollectionViewCell
         cell.locationContentView.viewModel = locationData[indexPath.row]
@@ -241,7 +278,7 @@ extension MapViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width * 2 / 3
         let height = width * 9 / 20
-
+        
         return CGSize(width: width, height: height)
     }
 }

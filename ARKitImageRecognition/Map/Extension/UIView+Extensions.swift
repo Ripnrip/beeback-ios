@@ -32,10 +32,10 @@ extension UIView {
         
         return shadowView
     }
-
+    
     
     func slideIn(_ duration: TimeInterval? = 0.2, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
-
+        
         let finalYPosition = self.frame.origin.y + (distance * locationYOnScreen())
         self.isHidden = false
         self.alpha = 0
@@ -46,8 +46,6 @@ extension UIView {
                        animations: {
                         self.frame.origin.y = finalYPosition
                         self.alpha = 1
-        },
-                       completion: { (value: Bool) in
         })
     }
     
