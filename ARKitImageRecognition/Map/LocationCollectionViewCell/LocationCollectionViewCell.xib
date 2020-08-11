@@ -15,10 +15,9 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNf-O8-W6H" customClass="LocationContentView" customModule="BeeBack" customModuleProvider="target">
                     <rect key="frame" x="10" y="10" width="256" height="90"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZNf-O8-W6H" firstAttribute="leading" secondItem="qgq-1m-nGB" secondAttribute="leading" constant="10" id="89V-dZ-KDU"/>
                 <constraint firstAttribute="bottom" secondItem="ZNf-O8-W6H" secondAttribute="bottom" constant="10" id="JI1-9i-0P7"/>
@@ -28,6 +27,9 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="locationContentView" destination="ZNf-O8-W6H" id="rPJ-z8-TOi"/>
+            </connections>
             <point key="canvasLocation" x="49" y="36"/>
         </view>
     </objects>

@@ -29,7 +29,7 @@ class NibView: UIView {
     
 }
 
-private extension NibView {
+extension NibView {
     
     func xibSetup() {
         backgroundColor = UIColor.clear

@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */; };
+		074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E3F7924DCB126006D13EA /* SearchBarView.swift */; };
+		074E3F7C24DCB145006D13EA /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074E3F7B24DCB145006D13EA /* SearchBarView.xib */; };
 		077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A2A24D8C30F009C118C /* MapViewController.swift */; };
-		077F2A5024DA1A1C009C118C /* CardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A4F24DA1A1C009C118C /* CardContentView.swift */; };
-		077F2A5224DA1A36009C118C /* CardContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077F2A5124DA1A36009C118C /* CardContentView.xib */; };
-		077F2A5424DA2B2B009C118C /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A5324DA2B2B009C118C /* CardCollectionViewCell.swift */; };
-		077F2A5624DA2B5B009C118C /* CardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077F2A5524DA2B5B009C118C /* CardCollectionViewCell.xib */; };
-		077F2A5A24DA30F9009C118C /* CardContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A5924DA30F9009C118C /* CardContentViewModel.swift */; };
 		07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */; };
 		07906CD924DB6716007558CF /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */; };
 		07CAE7F924DB8ACE009C1E27 /* LocationContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */; };
@@ -82,12 +80,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		074E3F7924DCB126006D13EA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		074E3F7B24DCB145006D13EA /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
 		077F2A2A24D8C30F009C118C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		077F2A4F24DA1A1C009C118C /* CardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentView.swift; sourceTree = "<group>"; };
-		077F2A5124DA1A36009C118C /* CardContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardContentView.xib; sourceTree = "<group>"; };
-		077F2A5324DA2B2B009C118C /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
-		077F2A5524DA2B5B009C118C /* CardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCollectionViewCell.xib; sourceTree = "<group>"; };
-		077F2A5924DA30F9009C118C /* CardContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentViewModel.swift; sourceTree = "<group>"; };
 		07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
 		07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationContentView.xib; sourceTree = "<group>"; };
@@ -175,27 +171,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074E3F7624DCB0D0006D13EA /* SearchBarView */ = {
+			isa = PBXGroup;
+			children = (
+				074E3F7924DCB126006D13EA /* SearchBarView.swift */,
+				074E3F7B24DCB145006D13EA /* SearchBarView.xib */,
+			);
+			path = SearchBarView;
+			sourceTree = "<group>";
+		};
+		074E3F7D24DCBF22006D13EA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		077F2A2924D8C2C8009C118C /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				077F2A2A24D8C30F009C118C /* MapViewController.swift */,
+				074E3F7D24DCBF22006D13EA /* Extension */,
 				07CAE7FD24DB8E31009C1E27 /* NibView.swift */,
+				074E3F7624DCB0D0006D13EA /* SearchBarView */,
 				07906CCB24DB64AF007558CF /* LocationCollectionViewCell */,
-				077F2A4E24DA19BC009C118C /* CardCollectionView */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		077F2A4E24DA19BC009C118C /* CardCollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				077F2A4F24DA1A1C009C118C /* CardContentView.swift */,
-				077F2A5124DA1A36009C118C /* CardContentView.xib */,
-				077F2A5324DA2B2B009C118C /* CardCollectionViewCell.swift */,
-				077F2A5524DA2B5B009C118C /* CardCollectionViewCell.xib */,
-				077F2A5924DA30F9009C118C /* CardContentViewModel.swift */,
-			);
-			path = CardCollectionView;
 			sourceTree = "<group>";
 		};
 		07906CCB24DB64AF007558CF /* LocationCollectionViewCell */ = {
@@ -203,8 +205,8 @@
 			children = (
 				07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */,
 				07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */,
-				07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */,
 				07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */,
+				07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */,
 				07CAE7FF24DB9E5D009C1E27 /* LocationContentViewModel.swift */,
 			);
 			path = LocationCollectionViewCell;
@@ -523,8 +525,8 @@
 				8493FB512444004800083350 /* Poppins-Thin.otf in Resources */,
 				8493FB412444004800083350 /* Poppins-Black.otf in Resources */,
 				39D8DC1B1E8ADAE600386B05 /* LaunchScreen.storyboard in Resources */,
-				077F2A5224DA1A36009C118C /* CardContentView.xib in Resources */,
 				8493FB422444004800083350 /* Poppins-BlackItalic.otf in Resources */,
+				074E3F7C24DCB145006D13EA /* SearchBarView.xib in Resources */,
 				8493FB462444004800083350 /* Poppins-ExtraBoldItalic.otf in Resources */,
 				8473A7AE2076A9A800A34F59 /* art.scnassets in Resources */,
 				8493FB482444004800083350 /* Poppins-ExtraLightItalic.otf in Resources */,
@@ -543,7 +545,6 @@
 				8411BB7A20CDFD66009E37AD /* Cadnav.com_B120212390.obj in Resources */,
 				8493FB432444004800083350 /* Poppins-Bold.otf in Resources */,
 				3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */,
-				077F2A5624DA2B5B009C118C /* CardCollectionViewCell.xib in Resources */,
 				8493FB4A2444004800083350 /* Poppins-Light.otf in Resources */,
 				8493FB4F2444004800083350 /* Poppins-SemiBold.otf in Resources */,
 				8493FB442444004800083350 /* Poppins-BoldItalic.otf in Resources */,
@@ -679,7 +680,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FFB9152439BCE600B973E9 /* MainNavigationViewController.swift in Sources */,
-				077F2A5024DA1A1C009C118C /* CardContentView.swift in Sources */,
 				84577BCA242FD998005E84AC /* LoginViewController.swift in Sources */,
 				3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */,
 				84E19FC424564DF00058D24A /* OnboardingViewController.swift in Sources */,
@@ -687,12 +687,11 @@
 				84577BCC242FDA44005E84AC /* MainCoordinator.swift in Sources */,
 				84FDF9DE247E620900C429F4 /* ProfileViewController.swift in Sources */,
 				07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */,
-				077F2A5424DA2B2B009C118C /* CardCollectionViewCell.swift in Sources */,
 				84577BCE242FDA87005E84AC /* LoginCoordinator.swift in Sources */,
 				8493FB282443F82500083350 /* TutorialCoordinator.swift in Sources */,
 				84FDF9DB247E61A200C429F4 /* ProfileCoordinator.swift in Sources */,
-				077F2A5A24DA30F9009C118C /* CardContentViewModel.swift in Sources */,
 				84FDF9E32480F49800C429F4 /* ProfileTrophesCollectionViewCell.swift in Sources */,
+				074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */,
 				07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */,
 				848C8D842475828800CEFA19 /* String+Extension.swift in Sources */,
 				07CAE80024DB9E5D009C1E27 /* LocationContentViewModel.swift in Sources */,
@@ -709,6 +708,7 @@
 				84B6637A248525ED007CF171 /* FirebaseServices.swift in Sources */,
 				84E19FC6245651900058D24A /* OnboardingCoordinator.swift in Sources */,
 				846AC1A424776172003184DF /* RxMediaPickerDelegate.swift in Sources */,
+				074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */,
 				84577BD0242FE21A005E84AC /* LoginNavigatonViewController.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
 				07CAE7FB24DB8B5B009C1E27 /* LocationContentView.swift in Sources */,

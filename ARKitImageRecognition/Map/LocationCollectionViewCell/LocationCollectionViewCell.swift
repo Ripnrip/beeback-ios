@@ -10,6 +10,10 @@ import UIKit
 
 class LocationCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var locationContentView: LocationContentView!
+    
+    let cornerRadius: CGFloat = 10.0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,22 +21,15 @@ class LocationCollectionViewCell: UICollectionViewCell {
     }
     
     func setup() {
-        backgroundColor = .green
-        print("cell width: \(bounds.width)")
+        backgroundColor = .clear
         
-//        let view = loadViewFromNib()
-//        view.frame = bounds
-//        addSubview(view)
+        locationContentView.layer.cornerRadius = cornerRadius
+        locationContentView.layer.masksToBounds = true
+        shadowSetup(for: locationContentView)
     }
     
-    func loadViewFromNib() -> UIView {
-        let bundle = Bundle(for: type(of: self))
-        
-        let nib = UINib(nibName: "LocationCollectionViewCell", bundle: bundle)
-        
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        
-        return view
-        
+    func shadowSetup(for contentView: UIView) {
+        let shadowView = locationContentView.createShadowView(shadowOffset: .init(width: 0, height: 12), shadowRadius: 6.0, cornerRadius: cornerRadius)
+        insertSubview(shadowView, at: 0)
     }
 }
