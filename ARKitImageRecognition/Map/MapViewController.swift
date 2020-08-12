@@ -8,7 +8,10 @@
 
 import UIKit
 import MapKit
+import RxSwift
+import RxCocoa
 
+// TODO: - Convert to RxMap, and use rx with collection view
 class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     
     //TESTING DATA
@@ -21,26 +24,26 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     ]
     // END TESTING
     
-    
     @IBOutlet weak var mapView: MKMapView!
-    
     @IBOutlet weak var searchBarView: SearchBarView!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBInspectable var labelTitle: String?
     
-    
-    // MARK: - Properties
     var mapReceivedDoubleTap = false
     var searchBarShadowView: UIView!
     var defaultCoordinateSpan: MKCoordinateSpan = MKCoordinateSpan()
     
+    private let disposeBag = DisposeBag()
+}
+
+// MARK: - View Lifecycle
+extension MapViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerXib()
         
         locationData = getTestData()
+        
         mapView.delegate = self
         generateMapPointAnnotations()
         
@@ -141,14 +144,28 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
         let initalRegion = MKCoordinateRegion(center: centerCoordinate, span: coordinateSpan)
         mapView.setRegion(initalRegion, animated: true)
     }
-    
-    
-    
 }
-
+// MARK: Rx Setup
+//extension MapViewController {
+//    func setupLocationObserver() {
+//        LocationDataManager.locationDataManager.locations.asObservable().subscribe(onNext: {
+//            [unowned self] locations in
+//            self.locationData = self.convertLocationToViewModel(locations: locations)
+//            }).disposed(by: disposeBag)
+//    }
+//
+//
+//    private func convertLocationToViewModel(locations: Array<Location>) -> Array<LocationContentViewModel> {
+//        var locationViewModels: Array<LocationContentViewModel> = []
+//        for location in locations {
+//            locationViewModels.append(LocationContentViewModel(location: location))
+//        }
+//
+//        return locationViewModels
+//    }
+//}
 
 // MARK: MKMapViewDelegate
-
 extension MapViewController {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("viewFor MapView Triggered!")

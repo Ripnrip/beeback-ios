@@ -41,4 +41,14 @@ class LocationContentViewModel: NSObject, MKAnnotation {
         self.coordinate = coordinate
     }
     
+    init(location: Location){
+        self.locationImage = nil
+        self.locationName = location.name!
+        self.locationSubtitle = location.description!
+        self.address = location.address!
+        self.distance = "3.5 mi"
+        self.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude),
+                                                 longitude: CLLocationDegrees(location.longtitude))
+    }
+
 }
