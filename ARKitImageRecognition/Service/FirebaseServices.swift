@@ -46,7 +46,7 @@ class FirebaseServices{
 
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
-        let data = UIImagePNGRepresentation(image)!
+        let data = image.pngData()!
         storageProfileRef.rx.putData(data, metadata: metadata).subscribe(onNext: { _ in
             print("upload success")
             }).disposed(by: disposeBag)

@@ -17,12 +17,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, Storyboarded {
     
     /// The view controller that displays the status and "restart experience" UI.
     lazy var statusViewController: StatusViewController = {
-        return childViewControllers.lazy.compactMap({ $0 as? StatusViewController }).first!
+        return children.lazy.compactMap({ $0 as? StatusViewController }).first!
     }()
     
     /// The tab bar the controls the transition
     lazy var tabBarViewController: PTTabBarViewController = {
-        return childViewControllers.lazy.compactMap({ $0 as? PTTabBarViewController }).first!
+        return children.lazy.compactMap({ $0 as? PTTabBarViewController }).first!
     }()
     
     /// A serial queue for thread safety when modifying the SceneKit node graph.
@@ -50,7 +50,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, Storyboarded {
         statusViewController.restartExperienceHandler = { [unowned self] in
             self.restartExperience()
         }
-        self.sceneView.addSubview(childViewControllers[0].view)
+        self.sceneView.addSubview(children[0].view)
         
     }
 
@@ -232,12 +232,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, Storyboarded {
             print("the distance from the box is \(distanceFromBox)")
             
             if distanceFromBox < 2 {
-                let alert = UIAlertController(title: "Alert", message: "Tapped the mystery box", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: "Alert", message: "Tapped the mystery box", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController(title: "Alert", message: "You are too far from the mystery box", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: "Alert", message: "You are too far from the mystery box", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Open", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
 

@@ -122,7 +122,7 @@ extension MapViewController {
             pointAnnotation.title = viewmodel.locationName
             pointAnnotation.coordinate = viewmodel.coordinate
             
-            let pinImagesIndex = locationData.index(of: viewmodel)! % pinImages.count
+            let pinImagesIndex = locationData.firstIndex(of: viewmodel)! % pinImages.count
             pointAnnotation.image = pinImages[pinImagesIndex]
             
             totalLat.append(viewmodel.coordinate.latitude)
