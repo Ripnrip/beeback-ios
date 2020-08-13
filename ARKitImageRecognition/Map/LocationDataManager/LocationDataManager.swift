@@ -26,6 +26,11 @@ let testData = [
              address: "744 W Dana St, Mountain View, CA 94041",
             longtitude: -122.078918,
              latitude: 37.392471),
+    Location(name: "Palo Alto Junior Museum",
+             description: "Free, child-oriented venue with animals like birds & turtles, plus interactive educational exhibits.",
+             address: "4050 Middlefield Rd, Palo Alto, CA 94303",
+            longtitude: -122.0951445,
+             latitude: 37.4170641),
 ]
 
 

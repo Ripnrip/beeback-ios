@@ -23,7 +23,7 @@ import UIKit
  ```
  
  */
-class LocationContentViewModel: NSObject, MKAnnotation {
+class LocationContentViewModel: NSObject {
     
     let locationImage: UIImage?
     let locationName: String
@@ -42,7 +42,12 @@ class LocationContentViewModel: NSObject, MKAnnotation {
     }
     
     init(location: Location){
-        self.locationImage = nil
+        if let imageName = location.name?.replacingOccurrences(of: " ", with: "").lowercased() {
+            self.locationImage = UIImage(named: imageName)
+        } else {
+            self.locationImage = nil
+        }
+        
         self.locationName = location.name!
         self.locationSubtitle = location.description!
         self.address = location.address!

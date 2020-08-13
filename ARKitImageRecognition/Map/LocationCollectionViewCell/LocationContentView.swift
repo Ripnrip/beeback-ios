@@ -16,6 +16,7 @@ class LocationContentView: NibView {
     @IBOutlet weak var locationSubtitle: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var locationPhoto: UIImageView!
     
     var viewModel: LocationContentViewModel? {
         didSet {
@@ -23,6 +24,7 @@ class LocationContentView: NibView {
             locationSubtitle.text = viewModel?.locationSubtitle
             address.text = viewModel?.address
             distance.text = viewModel?.distance
+            locationPhoto.image = viewModel?.locationImage
         }
     }
     

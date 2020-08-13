@@ -235,26 +235,33 @@ extension MapViewController: UIGestureRecognizerDelegate {
 }
 
 
-// MARK: - UICollectionViewDataSource
+// MARK: - CollectionView Setup
 extension MapViewController {
     private func collectionViewSetup() {
+        collectionViewDelegateConfig()
+        collectionViewDataSourceConfig()
+    }
+    
+    func collectionViewDataSourceConfig() {
+        locationViewModels.asObserver().bind(to: collectionView.rx.items(cellIdentifier: "LocationCollectionViewCell", cellType: LocationCollectionViewCell.self)){
+            row, data, cell in
+            cell.locationContentView.viewModel = data
+        }.disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(LocationContentViewModel.self).subscribe(onNext: { [unowned self] viewmodel in
+            print("modelSelected was triggered")
+            self.selectAnnotationOnMap(viewmodel.locationName)
+            }).disposed(by: disposeBag)
+    }
+    
+    func collectionViewDelegateConfig() {
         // TODO: - Move constants to a config file
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
         }
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        locationViewModels.asObserver().bind(to: collectionView.rx.items(cellIdentifier: "LocationCollectionViewCell", cellType: LocationCollectionViewCell.self)){
-            row, data, cell in
-            cell.locationContentView.viewModel = data
-        }.disposed(by: disposeBag)
-        
         collectionView.showsHorizontalScrollIndicator = false
-    }
-    
-    // TODO: Convert this into Rx too, reorganize RX
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectAnnotationOnMap(locationData[indexPath.row].locationName)
     }
     
     private func selectAnnotationOnMap(_ locationName: String) {
