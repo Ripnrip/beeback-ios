@@ -20,5 +20,5 @@ target 'ARKitImageRecognition' do
    pod 'RxFirebase'
    pod 'RxUIAlert'
    pod 'SwiftyGif'
-   pod "RxMKMapView"
+   pod 'RxMKMapView'
 end

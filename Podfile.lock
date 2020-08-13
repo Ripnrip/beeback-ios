@@ -237,55 +237,54 @@ PODS:
     - FBSDKShareKit/Share (= 5.15.1)
   - FBSDKShareKit/Share (5.15.1):
     - FBSDKCoreKit (~> 5.0)
-  - Firebase/Analytics (6.27.1):
+  - Firebase/Analytics (6.30.0):
     - Firebase/Core
-  - Firebase/Auth (6.27.1):
+  - Firebase/Auth (6.30.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 6.6.0)
-  - Firebase/Core (6.27.1):
+    - FirebaseAuth (~> 6.8.0)
+  - Firebase/Core (6.30.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.6.2)
-  - Firebase/CoreOnly (6.27.1):
-    - FirebaseCore (= 6.8.1)
-  - Firebase/Database (6.27.1):
+    - FirebaseAnalytics (= 6.7.2)
+  - Firebase/CoreOnly (6.30.0):
+    - FirebaseCore (= 6.10.0)
+  - Firebase/Database (6.30.0):
     - Firebase/CoreOnly
-    - FirebaseDatabase (~> 6.3.0)
-  - Firebase/Firestore (6.27.1):
+    - FirebaseDatabase (~> 6.5.0)
+  - Firebase/Firestore (6.30.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 1.16.0)
-  - Firebase/Storage (6.27.1):
+    - FirebaseFirestore (~> 1.16.4)
+  - Firebase/Storage (6.30.0):
     - Firebase/CoreOnly
-    - FirebaseStorage (~> 3.7.0)
-  - FirebaseABTesting (3.3.0):
-    - FirebaseCore (~> 6.8)
-    - Protobuf (>= 3.9.2, ~> 3.9)
-  - FirebaseAnalytics (6.6.2):
+    - FirebaseStorage (~> 3.9.0)
+  - FirebaseABTesting (4.2.0):
+    - FirebaseCore (~> 6.10)
+  - FirebaseAnalytics (6.7.2):
     - FirebaseCore (~> 6.8)
     - FirebaseInstallations (~> 1.4)
-    - GoogleAppMeasurement (= 6.6.2)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - GoogleAppMeasurement (= 6.7.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
     - nanopb (~> 1.30905.0)
-  - FirebaseAuth (6.6.0):
-    - FirebaseCore (~> 6.8)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
-    - GoogleUtilities/Environment (~> 6.5)
+  - FirebaseAuth (6.8.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (6.8.1):
+  - FirebaseCore (6.10.0):
     - FirebaseCoreDiagnostics (~> 1.3)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
-  - FirebaseCoreDiagnostics (1.4.0):
-    - GoogleDataTransportCCTSupport (~> 3.1)
-    - GoogleUtilities/Environment (~> 6.5)
-    - GoogleUtilities/Logger (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
+  - FirebaseCoreDiagnostics (1.5.0):
+    - GoogleDataTransport (~> 7.0)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/Logger (~> 6.7)
     - nanopb (~> 1.30905.0)
-  - FirebaseDatabase (6.3.0):
-    - FirebaseCore (~> 6.8)
+  - FirebaseDatabase (6.5.0):
+    - FirebaseCore (~> 6.10)
     - leveldb-library (~> 1.22)
-  - FirebaseFirestore (1.16.0):
+  - FirebaseFirestore (1.16.4):
     - abseil/algorithm (= 0.20200225.0)
     - abseil/base (= 0.20200225.0)
     - abseil/memory (= 0.20200225.0)
@@ -293,26 +292,26 @@ PODS:
     - abseil/strings/strings (= 0.20200225.0)
     - abseil/time (= 0.20200225.0)
     - abseil/types (= 0.20200225.0)
-    - FirebaseCore (~> 6.8)
+    - FirebaseCore (~> 6.10)
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 1.30905.0)
-  - FirebaseFunctions (2.6.0):
-    - FirebaseCore (~> 6.8)
+  - FirebaseFunctions (2.8.0):
+    - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseInstallations (1.4.0):
-    - FirebaseCore (~> 6.8)
-    - GoogleUtilities/Environment (~> 6.6)
-    - GoogleUtilities/UserDefaults (~> 6.6)
+  - FirebaseInstallations (1.6.0):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
-  - FirebaseRemoteConfig (4.6.0):
-    - FirebaseABTesting (~> 3.1)
-    - FirebaseCore (~> 6.8)
-    - FirebaseInstallations (~> 1.1)
-    - GoogleUtilities/Environment (~> 6.2)
-    - "GoogleUtilities/NSData+zlib (~> 6.2)"
-  - FirebaseStorage (3.7.0):
-    - FirebaseCore (~> 6.8)
+  - FirebaseRemoteConfig (4.9.0):
+    - FirebaseABTesting (~> 4.2)
+    - FirebaseCore (~> 6.10)
+    - FirebaseInstallations (~> 1.6)
+    - GoogleUtilities/Environment (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+  - FirebaseStorage (3.9.0):
+    - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseUI (8.4.2):
     - FirebaseUI/Anonymous (= 8.4.2)
@@ -349,38 +348,36 @@ PODS:
   - FirebaseUI/Storage (8.4.2):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
-  - GoogleAppMeasurement (6.6.2):
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/MethodSwizzler (~> 6.0)
-    - GoogleUtilities/Network (~> 6.0)
-    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+  - GoogleAppMeasurement (6.7.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
     - nanopb (~> 1.30905.0)
-  - GoogleDataTransport (6.2.1)
-  - GoogleDataTransportCCTSupport (3.2.0):
-    - GoogleDataTransport (~> 6.1)
+  - GoogleDataTransport (7.2.0):
     - nanopb (~> 1.30905.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (6.6.0):
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.6.0):
+  - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (6.6.0):
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.6.0):
+  - GoogleUtilities/MethodSwizzler (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.6.0):
+  - GoogleUtilities/Network (6.7.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.6.0)"
-  - GoogleUtilities/Reachability (6.6.0):
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.6.0):
+  - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
   - "gRPC-C++ (1.28.2)":
     - "gRPC-C++/Implementation (= 1.28.2)"
@@ -421,8 +418,7 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - paper-onboarding (6.1.5)
-  - PromisesObjC (1.2.9)
-  - Protobuf (3.12.0)
+  - PromisesObjC (1.2.10)
   - PTCardTabBar (1.0.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -477,12 +473,12 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - RxUIAlert (1.3.1):
+  - RxUIAlert (1.4.1):
     - RxCocoa
     - RxSwift
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
   - SwiftyGif (5.3.0)
 
 DEPENDENCIES:
@@ -525,7 +521,6 @@ SPEC REPOS:
     - FirebaseUI
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleDataTransportCCTSupport
     - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
@@ -536,7 +531,6 @@ SPEC REPOS:
     - nanopb
     - paper-onboarding
     - PromisesObjC
-    - Protobuf
     - PTCardTabBar
     - RxCocoa
     - RxFirebase
@@ -560,24 +554,23 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
   FBSDKLoginKit: f1ea8026a58b52d30c9f2e6a58ca7d813619fb83
   FBSDKShareKit: 259737eab3cc807087374553abdf588b3096ba55
-  Firebase: 919186c8e119dd9372a45fd1dd17a8a942bc1892
-  FirebaseABTesting: b7f8b6c8c9398e98bb30c4195f697b5b73a330d0
-  FirebaseAnalytics: 5fa308e1b13f838d0f6dc74719ac2a72e8c5afc4
-  FirebaseAuth: b85c064e0ac60f82486728d50a4803f235687302
-  FirebaseCore: 8cd4f8ea22075e0ee582849b1cf79d8816506085
-  FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
-  FirebaseDatabase: 3d02ffa794ec174853c086cf87cf2dc79bd6da49
-  FirebaseFirestore: 4291ab811ad323a2b807a4a481cd5df2e445a676
-  FirebaseFunctions: 55c11559aaef04038a066c07a7288094823ad3fb
-  FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
-  FirebaseRemoteConfig: 63ae9d14848e645c7f070daa6af89265be48f803
-  FirebaseStorage: af7bdbd12177cf567df00904e3e3a93704f25b15
+  Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
+  FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
+  FirebaseAnalytics: a299a86ef70fcc6aa011418bc65a7e101fb9636c
+  FirebaseAuth: 300433de340c1b058dbb8aec224a3f1bcfda5184
+  FirebaseCore: 9a41e2de78fef10f63cee30ab10e2945266bc1fc
+  FirebaseCoreDiagnostics: 7535fe695737f8c5b350584292a70b7f8ff0357b
+  FirebaseDatabase: d85b47213273708e48c972012b39105f76229588
+  FirebaseFirestore: ff82cd15f8ed3b417c307eb729e3e2e68aad0bdd
+  FirebaseFunctions: e0694e614a5e3300120a10d925e2cd3be60a9c81
+  FirebaseInstallations: 45f9d44d3a8d6f780fa337ee8987dad87210fcbc
+  FirebaseRemoteConfig: e40f9e084658210c4d9c341cfa9f6cab6ad4f67e
+  FirebaseStorage: 33b92875a9b556824886cc7a65120c7d2cb3a8d8
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
-  GoogleAppMeasurement: 8cd1f289d60e629cf16ab03363b9e89c776b9651
-  GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
-  GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
+  GoogleAppMeasurement: 3def7652b1f5b5a576178dc332e2a36a260fbef6
+  GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
@@ -585,8 +578,7 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   paper-onboarding: fede1799b1da6988f3788e3b71654583c6f3bce1
-  PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
-  Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   PTCardTabBar: 9112a6d4eb2b73da9cf4e7f3aefe04504479cf98
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxFirebase: 45e6448c69c7212e21f8ba89144443f916437861
@@ -599,8 +591,8 @@ SPEC CHECKSUMS:
   RxMKMapView: 7b19fc545887314851ea67b12193bc8c6004dcb5
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  RxUIAlert: 1f6df0b98b1a16143e2e377846fe01a70d561918
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  RxUIAlert: fa9ca44ddd114791a394a14443e40c26127dc049
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
 
 PODFILE CHECKSUM: 31a8877dda651341c30a7a7f8e806081656aeb84

@@ -25,7 +25,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     // END TESTING
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var searchBarView: SearchBarView!
+    @IBOutlet weak var searchBarView: SearchBarView?
     @IBOutlet weak var collectionView: UICollectionView!
     @IBInspectable var labelTitle: String?
     
@@ -98,17 +98,25 @@ extension MapViewController {
     }
     
     func searchBarViewFormat() {
-        searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        let textFieldHeight = UIScreen.main.bounds.height * 0.06
-        let cornerRadius = textFieldHeight / 2
-        searchBarView.addConstraint(NSLayoutConstraint(item: searchBarView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
+        if let searchBar = searchBarView {
+            searchBar.translatesAutoresizingMaskIntoConstraints = false
+            let textFieldHeight = UIScreen.main.bounds.height * 0.06
+            let cornerRadius = textFieldHeight / 2
+            searchBar.addConstraint(NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
+            
+            searchBar.layer.cornerRadius = textFieldHeight / 2
+            searchBar.layer.masksToBounds = true
+            
+            searchBarShadowView = searchBar.createShadowView(shadowOffset: .init(width: 0, height: 5), shadowRadius: 4.0, cornerRadius: cornerRadius)
+            
+            searchBar.superview?.insertSubview(searchBarShadowView, belowSubview: searchBar)
+        }
+        else {
+            print("searchBarView is not available")
+        }
         
-        searchBarView.layer.cornerRadius = textFieldHeight / 2
-        searchBarView.layer.masksToBounds = true
         
-        searchBarShadowView = searchBarView.createShadowView(shadowOffset: .init(width: 0, height: 5), shadowRadius: 4.0, cornerRadius: cornerRadius)
-        
-        searchBarView.superview?.insertSubview(searchBarShadowView, belowSubview: searchBarView)
+
         
     }
     
@@ -168,7 +176,6 @@ extension MapViewController {
 // MARK: MKMapViewDelegate
 extension MapViewController {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("viewFor MapView Triggered!")
         if !annotation.isKind(of: CustomPinAnnotation.self){
             var pinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "DefaultPinView")
             
@@ -197,7 +204,7 @@ extension MapViewController {
                        delay: 0.0,
                        options: .curveEaseInOut,
                        animations: {
-                        view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                        view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
                         view.centerOffset = CGPoint(x: 0, y: -view.frame.size.height / 2)
         })
     }
@@ -240,13 +247,17 @@ extension MapViewController: UIGestureRecognizerDelegate {
             mapReceivedDoubleTap = false
             return
         }
+        guard let searchBar = searchBarView else {
+            print("searchBarView is not available")
+            return
+        }
         
-        if searchBarView.isHidden {
-            searchBarView.slideIn()
+        if searchBar.isHidden {
+            searchBar.slideIn()
             searchBarShadowView.slideIn()
             collectionView.slideIn()
         } else {
-            searchBarView.slideOut()
+            searchBar.slideOut()
             searchBarShadowView.slideOut()
             collectionView.slideOut()
         }

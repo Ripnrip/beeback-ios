@@ -202,7 +202,7 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
                     self.coordinator?.userFinishedSetup()
                 } else {
                     //username has been taken before
-                    self.alert(title: "Error", message: "That username is taken, please try another one")
+                    self.rx.alert(title: "Error", message: "That username is taken, please try another one")
                     .subscribe()
                     .disposed(by: self.disposeBag)
                     
