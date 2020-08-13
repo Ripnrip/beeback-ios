@@ -33,6 +33,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     var searchBarShadowView: UIView!
     var defaultCoordinateSpan: MKCoordinateSpan = MKCoordinateSpan()
     
+    var locationViewModels : BehaviorSubject<Array<LocationContentViewModel>> = BehaviorSubject<Array<LocationContentViewModel>>(value: [])
+    
     private let disposeBag = DisposeBag()
 }
 
@@ -42,54 +44,11 @@ extension MapViewController {
         super.viewDidLoad()
         registerXib()
         
-        locationData = getTestData()
-        
-        mapView.delegate = self
+        setupLocationObserver()
+        mapViewSetup()
         generateMapPointAnnotations()
-        
         searchBarViewFormat()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
-        tap.delegate = self
-        self.mapView.addGestureRecognizer(tap)
-        
-        // TODO: - Move constants to a config file
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-        }
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.showsHorizontalScrollIndicator = false
-        
-    }
-    
-    func getTestData() -> Array<LocationContentViewModel> {
-        var testData = Array<LocationContentViewModel>()
-        
-        testData.append(LocationContentViewModel(image: nil,
-                                                 name: "Computer History Museum",
-                                                 subtitle: "Exhibits on early computers, the growth of the Internet, industry pioneers & more.",
-                                                 address: "1401 N Shoreline Blvd, Mountain View, CA 94043",
-                                                 distance: "0.5 mi",
-                                                 coordinate: CLLocationCoordinate2D(latitude: 37.414459, longitude: -122.077049)))
-        
-        testData.append(LocationContentViewModel(image: nil,
-                                                 name: "Googleplex",
-                                                 subtitle: "The global headquarters of Google",
-                                                 address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043",
-                                                 distance: "3.2 mi",
-                                                 coordinate: CLLocationCoordinate2D(latitude: 37.423199, longitude: -122.084068)))
-        
-        testData.append(LocationContentViewModel(image: nil,
-                                                 name: "Dana Street Roasting Company",
-                                                 subtitle: "A relaxed space with specialty & housemade blends",
-                                                 address: "744 W Dana St, Mountain View, CA 94041",
-                                                 distance: "5.0 mi",
-                                                 coordinate: CLLocationCoordinate2D(latitude: 37.392471, longitude: -122.078918)))
-        return testData
+        collectionViewSetup()
     }
     
     func registerXib() {
@@ -114,10 +73,13 @@ extension MapViewController {
         else {
             print("searchBarView is not available")
         }
-        
-        
-
-        
+    }
+    
+    private func mapViewSetup() {
+        mapView.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
+        tap.delegate = self
+        self.mapView.addGestureRecognizer(tap)
     }
     
     func generateMapPointAnnotations(){
@@ -145,7 +107,7 @@ extension MapViewController {
         )
         let coordinateSpanLat = Double(totalLat.max()! - totalLat.min()!) * 3
         let coordinateSpanLong = Double(totalLong.max()! - totalLong.min()!) * 3
-        
+        print("This was trigger")
         let coordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat, longitudeDelta: coordinateSpanLong)
         defaultCoordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat / 2, longitudeDelta: coordinateSpanLong / 2)
         
@@ -153,25 +115,30 @@ extension MapViewController {
         mapView.setRegion(initalRegion, animated: true)
     }
 }
+
+
 // MARK: Rx Setup
-//extension MapViewController {
-//    func setupLocationObserver() {
-//        LocationDataManager.locationDataManager.locations.asObservable().subscribe(onNext: {
-//            [unowned self] locations in
-//            self.locationData = self.convertLocationToViewModel(locations: locations)
-//            }).disposed(by: disposeBag)
-//    }
-//
-//
-//    private func convertLocationToViewModel(locations: Array<Location>) -> Array<LocationContentViewModel> {
-//        var locationViewModels: Array<LocationContentViewModel> = []
-//        for location in locations {
-//            locationViewModels.append(LocationContentViewModel(location: location))
-//        }
-//
-//        return locationViewModels
-//    }
-//}
+extension MapViewController {
+    func setupLocationObserver() {
+        LocationDataManager.locationDataManager.locations.asObservable().subscribe(onNext: {
+            [unowned self] locations in
+            let testData = self.convertLocationsToViewModels(locations: locations)
+            self.locationData = self.convertLocationsToViewModels(locations: locations)
+            self.locationViewModels.onNext(testData)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func convertLocationsToViewModels(locations: Array<Location>) -> Array<LocationContentViewModel> {
+        var locationViewModels: Array<LocationContentViewModel> = []
+        for location in locations {
+            locationViewModels.append(LocationContentViewModel(location: location))
+        }
+        
+        return locationViewModels
+    }
+    
+}
+
 
 // MARK: MKMapViewDelegate
 extension MapViewController {
@@ -221,6 +188,8 @@ extension MapViewController {
     
 }
 
+
+
 // MARK: UIGestureRecognizerDelegate
 
 // TODO: - Need to adjust gestureRecognizer to not hide searchbar and collectionview when selecting a pin
@@ -267,24 +236,23 @@ extension MapViewController: UIGestureRecognizerDelegate {
 
 
 // MARK: - UICollectionViewDataSource
-extension MapViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return locationData.count
+extension MapViewController {
+    private func collectionViewSetup() {
+        // TODO: - Move constants to a config file
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+        }
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+        locationViewModels.asObserver().bind(to: collectionView.rx.items(cellIdentifier: "LocationCollectionViewCell", cellType: LocationCollectionViewCell.self)){
+            row, data, cell in
+            cell.locationContentView.viewModel = data
+        }.disposed(by: disposeBag)
+        
+        collectionView.showsHorizontalScrollIndicator = false
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let cell = cell as! LocationCollectionViewCell
-        cell.locationContentView.viewModel = locationData[indexPath.row]
-    }
-    
+    // TODO: Convert this into Rx too, reorganize RX
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectAnnotationOnMap(locationData[indexPath.row].locationName)
     }
