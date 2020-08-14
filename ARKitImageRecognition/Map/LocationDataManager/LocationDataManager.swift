@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import MapKit
 
 let testData = [
     Location(name: "Computer History Museum",
@@ -42,9 +43,18 @@ class LocationDataManager {
 
 //MARK: - Get Data
 extension LocationDataManager{
+    func toLocationContentViewModels() -> Observable<[LocationContentViewModel]> {
+        return locations.asObservable().map { (locations) -> [LocationContentViewModel] in
+            var viewmodels : [LocationContentViewModel] = []
+            for location in locations {
+                viewmodels.append(LocationContentViewModel(location: location))
+            }
+            return viewmodels
+        }
+    }
+    
 }
 
 // MARK: - Data Conversion
 extension LocationDataManager {
-
 }

@@ -14,6 +14,8 @@
 		0770A47024E37AB8009F7F65 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770A46F24E37AB8009F7F65 /* LocationDataManager.swift */; };
 		0770A47224E37C59009F7F65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770A47124E37C59009F7F65 /* Location.swift */; };
 		077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A2A24D8C30F009C118C /* MapViewController.swift */; };
+		07854D3524E7209100F9297F /* LocationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854D3424E7209100F9297F /* LocationCollectionViewController.swift */; };
+		07854D3724E747BC00F9297F /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854D3624E747BC00F9297F /* MapViewViewModel.swift */; };
 		07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */; };
 		07906CD924DB6716007558CF /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */; };
 		07CAE7F924DB8ACE009C1E27 /* LocationContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */; };
@@ -90,6 +92,8 @@
 		0770A46F24E37AB8009F7F65 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		0770A47124E37C59009F7F65 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ARKitImageRecognition/Map/LocationDataManager/Location.swift; sourceTree = SOURCE_ROOT; };
 		077F2A2A24D8C30F009C118C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		07854D3424E7209100F9297F /* LocationCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewController.swift; sourceTree = "<group>"; };
+		07854D3624E747BC00F9297F /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
 		07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationContentView.xib; sourceTree = "<group>"; };
@@ -214,26 +218,28 @@
 			isa = PBXGroup;
 			children = (
 				077F2A2A24D8C30F009C118C /* MapViewController.swift */,
+				07854D3624E747BC00F9297F /* MapViewViewModel.swift */,
 				0770A46E24E37A8F009F7F65 /* LocationDataManager */,
 				074D337D24E242E7007EFF78 /* CustomPinAnnotation */,
 				074E3F7D24DCBF22006D13EA /* Extension */,
 				07CAE7FD24DB8E31009C1E27 /* NibView.swift */,
 				074E3F7624DCB0D0006D13EA /* SearchBarView */,
-				07906CCB24DB64AF007558CF /* LocationCollectionViewCell */,
+				07906CCB24DB64AF007558CF /* LocationCollectionView */,
 			);
 			path = Map;
 			sourceTree = "<group>";
 		};
-		07906CCB24DB64AF007558CF /* LocationCollectionViewCell */ = {
+		07906CCB24DB64AF007558CF /* LocationCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				07854D3424E7209100F9297F /* LocationCollectionViewController.swift */,
 				07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */,
 				07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */,
 				07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */,
 				07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */,
 				07CAE7FF24DB9E5D009C1E27 /* LocationContentViewModel.swift */,
 			);
-			path = LocationCollectionViewCell;
+			path = LocationCollectionView;
 			sourceTree = "<group>";
 		};
 		1488324B1EFC3EBF0043E0AB /* Additional View Controllers */ = {
@@ -705,6 +711,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FFB9152439BCE600B973E9 /* MainNavigationViewController.swift in Sources */,
+				07854D3524E7209100F9297F /* LocationCollectionViewController.swift in Sources */,
 				84577BCA242FD998005E84AC /* LoginViewController.swift in Sources */,
 				0770A47224E37C59009F7F65 /* Location.swift in Sources */,
 				3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */,
@@ -733,6 +740,7 @@
 				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
 				841365042476C74E00AA8CA9 /* OnboardingUserInfo.swift in Sources */,
 				849220BE2410CE7200109141 /* PTTabBarViewController.swift in Sources */,
+				07854D3724E747BC00F9297F /* MapViewViewModel.swift in Sources */,
 				84B6637A248525ED007CF171 /* FirebaseServices.swift in Sources */,
 				84E19FC6245651900058D24A /* OnboardingCoordinator.swift in Sources */,
 				846AC1A424776172003184DF /* RxMediaPickerDelegate.swift in Sources */,

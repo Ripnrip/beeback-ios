@@ -12,10 +12,10 @@ import RxSwift
 import RxCocoa
 
 // TODO: - Convert to RxMap, and use rx with collection view
+// Need to have at least 2 other VC, once for collectionview
 class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     
     //TESTING DATA
-    var locationData: Array<LocationContentViewModel> = Array<LocationContentViewModel>()
     let pinImages: Array<UIImage> = [
         UIImage(named: "locationPinPerson")!,
         UIImage(named: "locationPinTicket")!,
@@ -29,12 +29,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBInspectable var labelTitle: String?
     
+    
+    @IBOutlet weak var locationCollectionView: UIView!
+    
+    private lazy var locationCollectionVC: LocationCollectionViewController = {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        var viewController = storyboard.instantiateViewController(withIdentifier: "LocationCollectionViewController") as! LocationCollectionViewController
+        
+        self.add(asChildViewController: viewController, to: locationCollectionView)
+        
+        return viewController
+    }()
+    
     var mapReceivedDoubleTap = false
     var searchBarShadowView: UIView!
     var defaultCoordinateSpan: MKCoordinateSpan = MKCoordinateSpan()
+    var locationDataManager: LocationDataManager = LocationDataManager()
     
-    var locationViewModels : BehaviorSubject<Array<LocationContentViewModel>> = BehaviorSubject<Array<LocationContentViewModel>>(value: [])
+    var locationViewModels: Observable<[LocationContentViewModel]> = LocationDataManager.locationDataManager.toLocationContentViewModels()
     
+    var mapViewViewModel = MapViewViewModel.sharedViewModel
     private let disposeBag = DisposeBag()
 }
 
@@ -44,12 +59,33 @@ extension MapViewController {
         super.viewDidLoad()
         registerXib()
         
-        setupLocationObserver()
+        mapViewViewModel.locations.onNext(testData)
+        
+        mapViewViewModel.locations.observeOn(MainScheduler.instance).map(locationContentViewModels).bind(to: locationCollectionVC.locationContentViewModels).disposed(by: disposeBag)
+//
+//        locationViewModels.observeOn(MainScheduler.instance).bind(to: locationCollectionVC.locationContentViewModels).disposed(by: disposeBag)
+        
+        mapViewViewModel.regionToDisplay.asObservable().subscribe(onNext: {
+            [weak self] (region) in
+            self!.mapView.setRegion(region, animated: true)
+        }).disposed(by: disposeBag)
+        
+        locationDataSourceSetup()
         mapViewSetup()
-        generateMapPointAnnotations()
+        initialLocationSetup()
         searchBarViewFormat()
         collectionViewSetup()
     }
+    
+    func locationContentViewModels(from locations: [Location]) -> [LocationContentViewModel] {
+        var viewmodels : [LocationContentViewModel] = []
+        for location in locations {
+            viewmodels.append(LocationContentViewModel(location: location))
+        }
+        return viewmodels
+    }
+    
+    
     
     func registerXib() {
         collectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil),
@@ -75,16 +111,15 @@ extension MapViewController {
         }
     }
     
-    private func mapViewSetup() {
-        mapView.delegate = self
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
-        tap.delegate = self
-        self.mapView.addGestureRecognizer(tap)
-    }
+
     
-    func generateMapPointAnnotations(){
+    func initialLocationSetup(){
         var totalLat: Array<CLLocationDegrees> = Array<CLLocationDegrees>()
         var totalLong: Array<CLLocationDegrees> = Array<CLLocationDegrees>()
+        
+        
+        // Fix this to use Observable, this was created to prevent error
+        let locationData = convertLocationsToViewModels(locations: testData)
         
         for viewmodel in locationData{
             //            let pointAnnotation = MKPointAnnotation()
@@ -107,41 +142,52 @@ extension MapViewController {
         )
         let coordinateSpanLat = Double(totalLat.max()! - totalLat.min()!) * 3
         let coordinateSpanLong = Double(totalLong.max()! - totalLong.min()!) * 3
-        print("This was trigger")
-        let coordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat, longitudeDelta: coordinateSpanLong)
-        defaultCoordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat / 2, longitudeDelta: coordinateSpanLong / 2)
+
+        let initialcoordinateSpan = MKCoordinateSpan(latitudeDelta: coordinateSpanLat, longitudeDelta: coordinateSpanLong)
         
-        let initalRegion = MKCoordinateRegion(center: centerCoordinate, span: coordinateSpan)
-        mapView.setRegion(initalRegion, animated: true)
+
+        
+        let initalRegion = MKCoordinateRegion(center: centerCoordinate, span: initialcoordinateSpan)
+        
+        mapViewViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: coordinateSpanLat / 2, longitudeDelta: coordinateSpanLong / 2))
+        
+        mapViewViewModel.regionToDisplay.onNext(initalRegion)
     }
 }
 
 
-// MARK: Rx Setup
+// MARK: MapViewDataSource
 extension MapViewController {
-    func setupLocationObserver() {
-        LocationDataManager.locationDataManager.locations.asObservable().subscribe(onNext: {
-            [unowned self] locations in
-            let testData = self.convertLocationsToViewModels(locations: locations)
-            self.locationData = self.convertLocationsToViewModels(locations: locations)
-            self.locationViewModels.onNext(testData)
-        }).disposed(by: disposeBag)
+    func locationDataSourceSetup() {
+        
+//        locationDataManager.locations.asObservable().subscribe(onNext: {
+//            [unowned self] locations in
+//            let testData = self.convertLocationsToViewModels(locations: locations)
+//            self.locationViewModels.onNext(testData)
+//        }).disposed(by: disposeBag)
     }
     
-    private func convertLocationsToViewModels(locations: Array<Location>) -> Array<LocationContentViewModel> {
+    private func convertLocationsToViewModels(locations: [Location]) -> Array<LocationContentViewModel> {
         var locationViewModels: Array<LocationContentViewModel> = []
         for location in locations {
             locationViewModels.append(LocationContentViewModel(location: location))
         }
-        
         return locationViewModels
     }
+    
     
 }
 
 
 // MARK: MKMapViewDelegate
 extension MapViewController {
+    private func mapViewSetup() {
+        mapView.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
+        tap.delegate = self
+        self.mapView.addGestureRecognizer(tap)
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !annotation.isKind(of: CustomPinAnnotation.self){
             var pinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "DefaultPinView")
@@ -224,11 +270,11 @@ extension MapViewController: UIGestureRecognizerDelegate {
         if searchBar.isHidden {
             searchBar.slideIn()
             searchBarShadowView.slideIn()
-            collectionView.slideIn()
+//            collectionView.slideIn()
         } else {
             searchBar.slideOut()
             searchBarShadowView.slideOut()
-            collectionView.slideOut()
+//            collectionView.slideOut()
         }
     }
     
@@ -243,13 +289,12 @@ extension MapViewController {
     }
     
     func collectionViewDataSourceConfig() {
-        locationViewModels.asObserver().bind(to: collectionView.rx.items(cellIdentifier: "LocationCollectionViewCell", cellType: LocationCollectionViewCell.self)){
+        locationViewModels.bind(to: collectionView.rx.items(cellIdentifier: "LocationCollectionViewCell", cellType: LocationCollectionViewCell.self)){
             row, data, cell in
             cell.locationContentView.viewModel = data
         }.disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(LocationContentViewModel.self).subscribe(onNext: { [unowned self] viewmodel in
-            print("modelSelected was triggered")
             self.selectAnnotationOnMap(viewmodel.locationName)
             }).disposed(by: disposeBag)
     }

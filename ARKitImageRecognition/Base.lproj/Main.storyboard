@@ -135,6 +135,13 @@
                                 <rect key="frame" x="30" y="70" width="354" height="54"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ffV-VD-Gqo">
+                                <rect key="frame" x="0.0" y="470" width="414" height="167"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="ODZ-eT-F2p" kind="embed" id="hx3-Gd-gHq"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -161,6 +168,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="collectionView" destination="rLa-iM-L4w" id="VU8-0H-3cw"/>
+                        <outlet property="locationCollectionView" destination="ffV-VD-Gqo" id="gQF-Wn-j9W"/>
                         <outlet property="mapView" destination="u6t-v4-9b7" id="qh6-ka-MN7"/>
                         <outlet property="searchBarView" destination="ukR-Gn-KZe" id="3nL-e8-9Sn"/>
                     </connections>
@@ -1070,6 +1078,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsL-C4-Vdu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-801.44927536231887" y="-64.285714285714278"/>
+        </scene>
+        <!--Location Collection View Controller-->
+        <scene sceneID="LOK-MI-1pi">
+            <objects>
+                <viewController storyboardIdentifier="LocationCollectionViewController" id="ODZ-eT-F2p" customClass="LocationCollectionViewController" customModule="BeeBack" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KQR-HH-0YO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="167"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NQp-a3-7xK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="167"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FNo-5H-F7l">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="NQp-a3-7xK" firstAttribute="leading" secondItem="KQR-HH-0YO" secondAttribute="leading" id="0XR-6D-if7"/>
+                            <constraint firstAttribute="bottom" secondItem="NQp-a3-7xK" secondAttribute="bottom" id="fGN-bS-Xbn"/>
+                            <constraint firstAttribute="trailing" secondItem="NQp-a3-7xK" secondAttribute="trailing" id="igI-lS-fFc"/>
+                            <constraint firstItem="NQp-a3-7xK" firstAttribute="top" secondItem="KQR-HH-0YO" secondAttribute="top" id="mJs-RO-BXb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="NQp-a3-7xK" id="INv-y4-Sem"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cKv-Ta-Nxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1286.9565217391305" y="1674.7767857142856"/>
         </scene>
     </scenes>
     <resources>
