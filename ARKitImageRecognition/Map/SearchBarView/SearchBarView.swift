@@ -23,6 +23,6 @@ class SearchBarView: NibView {
         searchBarTextField.borderStyle = .none
         searchBarTextField.translatesAutoresizingMaskIntoConstraints = false
         let textFieldHeight = UIScreen.main.bounds.height * 0.06
-        searchBarTextField.addConstraint(NSLayoutConstraint(item: searchBarTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
+        searchBarTextField.addConstraint(NSLayoutConstraint(item: searchBarTextField!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: textFieldHeight))
     }
 }

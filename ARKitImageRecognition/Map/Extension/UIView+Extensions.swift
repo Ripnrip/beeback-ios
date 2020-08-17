@@ -81,9 +81,6 @@ extension UIViewController {
         // Add Child View as Subview
         parentView.addSubview(viewController.view)
         
-        print("parentView.bounds : \(parentView.bounds)")
-        
-        
         // Configure Child View
         viewController.view.frame = parentView.bounds
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]

@@ -14,13 +14,15 @@ struct Location {
     let address: String?
     let longtitude: Float
     let latitude: Float
+    let type: String?
     
-    init(name: String?, description: String?, address: String?, longtitude: Float, latitude: Float) {
+    init(name: String?, description: String?, address: String?, longtitude: Float, latitude: Float, type: String?) {
         self.name = name
         self.description = description
         self.address = address
         self.longtitude = longtitude
         self.latitude = latitude
+        self.type = type
     }
 
 }

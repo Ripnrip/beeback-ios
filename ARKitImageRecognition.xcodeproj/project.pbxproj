@@ -11,7 +11,6 @@
 		074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */; };
 		074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E3F7924DCB126006D13EA /* SearchBarView.swift */; };
 		074E3F7C24DCB145006D13EA /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074E3F7B24DCB145006D13EA /* SearchBarView.xib */; };
-		0770A47024E37AB8009F7F65 /* LocationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770A46F24E37AB8009F7F65 /* LocationDataManager.swift */; };
 		0770A47224E37C59009F7F65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770A47124E37C59009F7F65 /* Location.swift */; };
 		077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A2A24D8C30F009C118C /* MapViewController.swift */; };
 		07854D3524E7209100F9297F /* LocationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854D3424E7209100F9297F /* LocationCollectionViewController.swift */; };
@@ -89,7 +88,6 @@
 		074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinAnnotation.swift; sourceTree = "<group>"; };
 		074E3F7924DCB126006D13EA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		074E3F7B24DCB145006D13EA /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
-		0770A46F24E37AB8009F7F65 /* LocationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataManager.swift; sourceTree = "<group>"; };
 		0770A47124E37C59009F7F65 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ARKitImageRecognition/Map/LocationDataManager/Location.swift; sourceTree = SOURCE_ROOT; };
 		077F2A2A24D8C30F009C118C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		07854D3424E7209100F9297F /* LocationCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewController.swift; sourceTree = "<group>"; };
@@ -206,20 +204,11 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		0770A46E24E37A8F009F7F65 /* LocationDataManager */ = {
-			isa = PBXGroup;
-			children = (
-				0770A46F24E37AB8009F7F65 /* LocationDataManager.swift */,
-			);
-			path = LocationDataManager;
-			sourceTree = "<group>";
-		};
 		077F2A2924D8C2C8009C118C /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				077F2A2A24D8C30F009C118C /* MapViewController.swift */,
 				07854D3624E747BC00F9297F /* MapViewViewModel.swift */,
-				0770A46E24E37A8F009F7F65 /* LocationDataManager */,
 				074D337D24E242E7007EFF78 /* CustomPinAnnotation */,
 				074E3F7D24DCBF22006D13EA /* Extension */,
 				07CAE7FD24DB8E31009C1E27 /* NibView.swift */,
@@ -719,7 +708,6 @@
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
 				074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */,
 				84577BCC242FDA44005E84AC /* MainCoordinator.swift in Sources */,
-				0770A47024E37AB8009F7F65 /* LocationDataManager.swift in Sources */,
 				84FDF9DE247E620900C429F4 /* ProfileViewController.swift in Sources */,
 				07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */,
 				84577BCE242FDA87005E84AC /* LoginCoordinator.swift in Sources */,

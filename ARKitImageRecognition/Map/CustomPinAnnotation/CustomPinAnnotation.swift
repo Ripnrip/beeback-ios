@@ -14,16 +14,21 @@ class CustomPinAnnotation : NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     var image: UIImage?
-    var color: UIColor?
     
     override init() {
         self.coordinate = CLLocationCoordinate2D()
         self.title = nil
         self.subtitle = nil
         self.image = nil
-        self.color = UIColor.green
     }
     
+    func getData(from location: Location){
+        self.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(location.latitude),
+                                                 longitude: CLLocationDegrees(location.longtitude))
+        self.title = location.name
+        self.subtitle = location.description
+        self.image = UIImage(named: location.type!)
+    }
 }
 
 
@@ -69,4 +74,6 @@ class CustomPinAnnotationView: MKAnnotationView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+
 }
