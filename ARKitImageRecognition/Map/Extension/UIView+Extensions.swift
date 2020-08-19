@@ -34,42 +34,54 @@ extension UIView {
     }
     
     
-    func slideIn(_ duration: TimeInterval? = 0.2, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
-        
-        let finalYPosition = self.frame.origin.y + (distance * locationYOnScreen())
+    func slideIn(_ duration: TimeInterval? = 0.3, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
         self.isHidden = false
         self.alpha = 0
         
         UIView.animate(withDuration: duration!,
                        delay: 0.0,
-                       options: .curveEaseOut,
+                       options: .curveEaseIn,
                        animations: {
-                        self.frame.origin.y = finalYPosition
                         self.alpha = 1
+                        self.transform = CGAffineTransform.identity
         })
     }
     
-    func slideOut(_ duration: TimeInterval? = 0.2, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
-        
-        let finalYPosition = self.frame.origin.y - (distance * locationYOnScreen())
+    func slideOut(_ duration: TimeInterval? = 0.3, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
         UIView.animate(withDuration: duration!,
                        delay: 0.0,
-                       options: .curveEaseIn,
+                       options: .curveEaseOut,
                        animations: {
-                        self.frame.origin.y = finalYPosition
                         self.alpha = 0
-        },
+                        self.transform = CGAffineTransform(translationX: 0,
+                                                           y: distance * self.slideDirection())},
                        completion: { (value: Bool) in
                         self.isHidden = true
         })
     }
     
-    func locationYOnScreen() -> CGFloat {
+    func slideDirection() -> CGFloat {
         if self.frame.origin.y <= UIScreen.main.bounds.height / 2 {
-            return 1.0
-        } else {
             return -1.0
+        } else {
+            return 1.0
         }
+    }
+    
+    func slideOut1(_ duration: TimeInterval? = 0.3,
+                   distance: CGFloat = 70.0,
+                   onCompletion: ((Bool) -> Void)? = nil) {
+        UIView.animate(withDuration: duration!,
+                       delay: 0.0,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.alpha = 0
+                        self.transform = CGAffineTransform(translationX: 0,
+                                                           y: distance * self.slideDirection())},
+                       completion: { (value: Bool) in
+                        onCompletion?(value)
+//                        self.isHidden = true
+        })
     }
 }
 

@@ -12,30 +12,19 @@ import RxSwift
 import RxCocoa
 import RxMKMapView
 
-// TODO: - Convert to RxMap, and use rx with collection view
-// Need to have at least 2 other VC, once for collectionview
+
 class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
-    
-    //TESTING DATA
-    let pinImages: Array<UIImage> = [
-        UIImage(named: "locationPinPerson")!,
-        UIImage(named: "locationPinTicket")!,
-        UIImage(named: "locationPinMessage")!,
-        UIImage(named: "locationPinBook")!,
-    ]
-    // END TESTING
-    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBarView: SearchBarView?
     @IBInspectable var labelTitle: String?
-    
     
     @IBOutlet weak var locationCollectionView: UIView!
     
     private lazy var locationCollectionVC: LocationCollectionViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        var viewController = storyboard.instantiateViewController(withIdentifier: "LocationCollectionViewController") as! LocationCollectionViewController
+        var viewController = storyboard.instantiateViewController(
+            withIdentifier: "LocationCollectionViewController") as! LocationCollectionViewController
         
         self.add(asChildViewController: viewController, to: locationCollectionView)
         
@@ -58,10 +47,10 @@ extension MapViewController {
         mapViewViewModel.locations.observeOn(MainScheduler.instance).map(locationContentViewModels).bind(
             to: locationCollectionVC.locationContentViewModels).disposed(by: disposeBag)
         
-        mapViewSetup()
+        
         initialLocationSetup()
         searchBarViewFormat()
-        
+        mapViewSetup()
     }
     
     func locationContentViewModels(from locations: [Location]) -> [LocationContentViewModel] {
@@ -71,11 +60,6 @@ extension MapViewController {
         }
         return viewmodels
     }
-    
-    func nextRegionToDisplay(){
-        
-    }
-    
     
     func customPinAnnotationViews(from locations: [Location]) -> [CustomPinAnnotation]{
         var annotations : [CustomPinAnnotation] = [CustomPinAnnotation]()
@@ -107,12 +91,12 @@ extension MapViewController {
         }
     }
     
-    
-    
     func initialLocationSetup(){
         mapViewViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.09218215942382812, longitudeDelta: 0.054290771484375))
         mapViewViewModel.coordinateToDisplay.onNext(CLLocationCoordinate2D(latitude: 37.40179847717285, longitude: -122.08379554748535))
     }
+    
+    
 }
 
 
@@ -135,7 +119,7 @@ extension MapViewController {
                 }
             }
             
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         mapViewViewModel.locations.asDriver(onErrorJustReturn: []).map(customPinAnnotationViews).drive(mapView.rx.annotations).disposed(by: disposeBag)
         
@@ -147,13 +131,14 @@ extension MapViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapMap))
         tap.delegate = self
         self.mapView.addGestureRecognizer(tap)
-        
+        hideSearchBarSetup()
+        hideCollectionViewSetup()
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !annotation.isKind(of: CustomPinAnnotation.self){
             var pinAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "DefaultPinView")
-            
+            
             if pinAnnotationView == nil {
                 pinAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "DefaultPinView")
             }
@@ -200,6 +185,35 @@ extension MapViewController {
         }).disposed(by: disposeBag)
     }
     
+    func hideSearchBarSetup(){
+        mapViewViewModel.isSearchBarHidden.subscribe(onNext: { [weak self] (value) in
+            if value == self?.searchBarView!.isHidden {
+                return
+            }
+            
+            if value {
+                self?.searchBarView?.slideOut()
+                self?.searchBarShadowView?.slideOut()
+            } else {
+                self?.searchBarView?.slideIn()
+                self?.searchBarShadowView?.slideIn()
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func hideCollectionViewSetup(){
+        mapViewViewModel.isCollectionViewHidden.subscribe(onNext: { [weak self] (value) in
+            if value == self?.locationCollectionView!.isHidden {
+                return
+            }
+            
+            if value {
+                self?.locationCollectionView?.slideOut()
+            } else {
+                self?.locationCollectionView?.slideIn()
+            }
+        }).disposed(by: disposeBag)
+    }
 }
 
 
@@ -214,7 +228,6 @@ extension MapViewController: UIGestureRecognizerDelegate {
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        
         if otherGestureRecognizer.isKind(of: UITapGestureRecognizer.self) {
             let tr = otherGestureRecognizer as! UITapGestureRecognizer
             if tr.numberOfTapsRequired == 2 {
@@ -236,13 +249,11 @@ extension MapViewController: UIGestureRecognizerDelegate {
         }
         
         if searchBar.isHidden {
-            searchBar.slideIn()
-            searchBarShadowView.slideIn()
-            locationCollectionView.slideIn()
+            self.mapViewViewModel.isSearchBarHidden.onNext(false)
+            self.mapViewViewModel.isCollectionViewHidden.onNext(false)
         } else {
-            searchBar.slideOut()
-            searchBarShadowView.slideOut()
-            locationCollectionView.slideOut()
+            self.mapViewViewModel.isSearchBarHidden.onNext(true)
+            self.mapViewViewModel.isCollectionViewHidden.onNext(true)
         }
     }
     

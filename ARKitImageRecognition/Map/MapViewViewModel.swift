@@ -33,6 +33,8 @@ class MapViewViewModel {
     
     public let annotationIndexToDisplay : BehaviorSubject<String> = BehaviorSubject<String>(value: String())
     
+    public let isSearchBarHidden : BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
+    public let isCollectionViewHidden: BehaviorSubject<Bool> = BehaviorSubject<Bool>(value: false)
 }
 
 let testData = [

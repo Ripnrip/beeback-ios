@@ -32,7 +32,8 @@ class LocationCollectionViewController: UIViewController {
         }
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
-        
+        collectionView.delaysContentTouches = false
+                
         setupBinding()
     }
     
@@ -60,6 +61,8 @@ class LocationCollectionViewController: UIViewController {
         
         Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(LocationContentViewModel.self)).bind {
             indexPath, model in
+            MapViewViewModel.sharedViewModel.isSearchBarHidden.onNext(true)
+            
             MapViewViewModel.sharedViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.025))
             MapViewViewModel.sharedViewModel.coordinateToDisplay.onNext(model.coordinate)
             MapViewViewModel.sharedViewModel.annotationIndexToDisplay.onNext(model.locationName)
