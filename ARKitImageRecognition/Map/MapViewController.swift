@@ -20,6 +20,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, Storyboarded {
     
     @IBOutlet weak var locationCollectionView: UIView!
     
+    weak var coordinator: MainCoordinator?
+    
     private lazy var locationCollectionVC: LocationCollectionViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         

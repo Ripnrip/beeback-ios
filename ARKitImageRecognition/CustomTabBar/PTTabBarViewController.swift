@@ -11,11 +11,17 @@ import PTCardTabBar
 class PTTabBarViewController: PTCardTabBarController, Storyboarded {
 
     weak var coordinator: MainCoordinator?
+    
+    var mapViewController: MapViewController
+    var arViewController: ViewController
+    var profileViewCotroller: ProfileViewController
 
     override func viewDidLoad() {
-        let vc1 = MapViewController.instantiate()
-        let vc2 = ViewController.instantiate()
-        let vc3 = ProfileViewController.instantiate()
+        mapViewController = MapViewController.instantiate()
+        mapViewController.coordinator = coordinator
+        
+        arViewController = ViewController.instantiate()
+        profileViewCotroller = ProfileViewController.instantiate()
         
         vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "map"), tag: 1)
         vc1.tabBarItem.image = UIImage(named: "map")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
@@ -24,7 +30,7 @@ class PTTabBarViewController: PTCardTabBarController, Storyboarded {
         vc3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user"), tag: 3)
         vc3.tabBarItem.image = UIImage(named: "user")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
 
-        self.viewControllers = [vc1, vc2, vc3]
+        self.viewControllers = [mapViewController, arViewController, profileViewCotroller]
         
 
         
