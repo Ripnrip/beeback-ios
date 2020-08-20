@@ -116,7 +116,8 @@ extension MapViewController {
             if let annotations = self?.mapView.annotations{
                 for annotation in annotations {
                     if annotation.title == index {
-                        self!.mapView.selectAnnotation(annotation, animated: true)
+                        self?.mapView.selectAnnotation(annotation, animated: true)
+                        self?.coordinator?.updateMapLocation()
                     }
                 }
             }

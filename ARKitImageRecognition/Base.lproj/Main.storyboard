@@ -1088,6 +1088,7 @@
                             <constraint firstAttribute="trailing" secondItem="NQp-a3-7xK" secondAttribute="trailing" id="igI-lS-fFc"/>
                             <constraint firstItem="NQp-a3-7xK" firstAttribute="top" secondItem="KQR-HH-0YO" secondAttribute="top" id="mJs-RO-BXb"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="IkL-dV-6Yq"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="NQp-a3-7xK" id="INv-y4-Sem"/>
