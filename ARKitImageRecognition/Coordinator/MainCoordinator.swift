@@ -19,8 +19,12 @@ class MainCoordinator: Coordinator {
 
     func start() {
         let vc = PTTabBarViewController.instantiate()
-        //let vc = ProfileViewController.instantiate()
+        vc.coordinator = self
 
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func updateMapLocation() {
+        
     }
 }

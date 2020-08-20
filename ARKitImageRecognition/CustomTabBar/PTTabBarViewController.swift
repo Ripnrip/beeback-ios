@@ -10,6 +10,8 @@ import UIKit
 import PTCardTabBar
 class PTTabBarViewController: PTCardTabBarController, Storyboarded {
 
+    weak var coordinator: MainCoordinator?
+
     override func viewDidLoad() {
         let vc1 = MapViewController.instantiate()
         let vc2 = ViewController.instantiate()
