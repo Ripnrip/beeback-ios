@@ -37,7 +37,6 @@ extension UIView {
     func slideIn(_ duration: TimeInterval? = 0.3, distance: CGFloat = 70.0, onCompletion: (() -> Void)? = nil) {
         self.isHidden = false
         self.alpha = 0
-        
         UIView.animate(withDuration: duration!,
                        delay: 0.0,
                        options: .curveEaseIn,

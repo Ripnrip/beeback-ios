@@ -21,6 +21,8 @@
 		07CAE7FB24DB8B5B009C1E27 /* LocationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */; };
 		07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAE7FD24DB8E31009C1E27 /* NibView.swift */; };
 		07CAE80024DB9E5D009C1E27 /* LocationContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAE7FF24DB9E5D009C1E27 /* LocationContentViewModel.swift */; };
+		07F8B04524FD7D52000872C3 /* MapDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8B04424FD7D52000872C3 /* MapDataSource.swift */; };
+		07F8B04724FDC6C3000872C3 /* MapViewController+UIGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8B04624FDC6C3000872C3 /* MapViewController+UIGestureRecognizerDelegate.swift */; };
 		3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */; };
 		3929C48E1E89EC2C00E00B60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3929C48D1E89EC2C00E00B60 /* ViewController.swift */; };
 		3929C4911E89EC2C00E00B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3929C48F1E89EC2C00E00B60 /* Main.storyboard */; };
@@ -98,6 +100,8 @@
 		07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentView.swift; sourceTree = "<group>"; };
 		07CAE7FD24DB8E31009C1E27 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		07CAE7FF24DB9E5D009C1E27 /* LocationContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentViewModel.swift; sourceTree = "<group>"; };
+		07F8B04424FD7D52000872C3 /* MapDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataSource.swift; sourceTree = "<group>"; };
+		07F8B04624FDC6C3000872C3 /* MapViewController+UIGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+UIGestureRecognizerDelegate.swift"; sourceTree = "<group>"; };
 		11063F3B1EBE651B0033EE6D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3929C4881E89EC2C00E00B60 /* BeeBack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeeBack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -208,7 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				077F2A2A24D8C30F009C118C /* MapViewController.swift */,
+				07F8B04624FDC6C3000872C3 /* MapViewController+UIGestureRecognizerDelegate.swift */,
 				07854D3624E747BC00F9297F /* MapViewViewModel.swift */,
+				07F8B04424FD7D52000872C3 /* MapDataSource.swift */,
 				074D337D24E242E7007EFF78 /* CustomPinAnnotation */,
 				074E3F7D24DCBF22006D13EA /* Extension */,
 				07CAE7FD24DB8E31009C1E27 /* NibView.swift */,
@@ -724,11 +730,13 @@
 				077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */,
 				8493FB2B2443F8CE00083350 /* TutorialViewController.swift in Sources */,
 				84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */,
+				07F8B04524FD7D52000872C3 /* MapDataSource.swift in Sources */,
 				8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */,
 				C8C12A711F29277B00B011FE /* ViewController+ARSessionDelegate.swift in Sources */,
 				841365042476C74E00AA8CA9 /* OnboardingUserInfo.swift in Sources */,
 				849220BE2410CE7200109141 /* PTTabBarViewController.swift in Sources */,
 				07854D3724E747BC00F9297F /* MapViewViewModel.swift in Sources */,
+				07F8B04724FDC6C3000872C3 /* MapViewController+UIGestureRecognizerDelegate.swift in Sources */,
 				84B6637A248525ED007CF171 /* FirebaseServices.swift in Sources */,
 				84E19FC6245651900058D24A /* OnboardingCoordinator.swift in Sources */,
 				846AC1A424776172003184DF /* RxMediaPickerDelegate.swift in Sources */,

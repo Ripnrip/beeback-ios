@@ -13,6 +13,8 @@ import MapKit
 
 class LocationCollectionViewController: UIViewController {
     
+    weak var coordinator: MainCoordinator?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     public var locationContentViewModels = BehaviorSubject<[LocationContentViewModel]>(
@@ -49,25 +51,33 @@ class LocationCollectionViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         
-        
-        // TODO: Need to select Annotation too mapView.selectAnnotation(annotation, animated: true)
         collectionView.rx.modelSelected(LocationContentViewModel.self).subscribe(onNext: {
             viewmodel in
-            MapViewViewModel.sharedViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.025))
-            MapViewViewModel.sharedViewModel.coordinateToDisplay.onNext(viewmodel.coordinate)
-
-            
+            self.setLocation(viewmodel: viewmodel)
         }).disposed(by: disposeBag)
         
-        Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(LocationContentViewModel.self)).bind {
-            indexPath, model in
-            MapViewViewModel.sharedViewModel.isSearchBarHidden.onNext(true)
-            
-            MapViewViewModel.sharedViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.025))
-            MapViewViewModel.sharedViewModel.coordinateToDisplay.onNext(model.coordinate)
-            MapViewViewModel.sharedViewModel.annotationIndexToDisplay.onNext(model.locationName)
-        }
-    .disposed(by: disposeBag)
+//        Observable.zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(LocationContentViewModel.self)).bind {
+//            indexPath, model in
+//
+//
+//            self.coordinator?.updateMapLocation()
+//
+//            OldMapViewViewModel.sharedViewModel.isSearchBarHidden.onNext(true)
+//
+//            OldMapViewViewModel.sharedViewModel.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.025))
+//            OldMapViewViewModel.sharedViewModel.coordinateToDisplay.onNext(model.coordinate)
+//            OldMapViewViewModel.sharedViewModel.annotationIndexToDisplay.onNext(model.locationName)
+//        }
+//    .disposed(by: disposeBag)
+    }
+    
+    
+    func setLocation(viewmodel: LocationContentViewModel) {
+        MapDataSource.mapDataSource.isSearchBarHidden.onNext(true)
+
+        MapDataSource.mapDataSource.coordinateToDisplay.onNext(viewmodel.coordinate)
+        MapDataSource.mapDataSource.coordinateSpan.onNext(MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.025))
+        MapDataSource.mapDataSource.annotationIndexToDisplay.onNext(viewmodel.locationName)
     }
 }
 
