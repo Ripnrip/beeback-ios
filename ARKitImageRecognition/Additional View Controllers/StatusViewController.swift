@@ -13,7 +13,7 @@ import ARKit
  the status of the AR experience, as well as the ability to control restarting
  the experience altogether.
 */
-class StatusViewController: UIViewController {
+class StatusViewController: UIViewController, Storyboarded {
 
     enum MessageType {
         case trackingStateEscalation
@@ -26,12 +26,10 @@ class StatusViewController: UIViewController {
     }
 
     // MARK: - IBOutlets
-
-    @IBOutlet weak private var messagePanel: UIVisualEffectView!
-    
-    @IBOutlet weak private var messageLabel: UILabel!
-    
-    @IBOutlet weak private var restartExperienceButton: UIButton!
+    var messagePanel : MessagePanelView = MessagePanelView(frame: .zero)
+//    var messageLabel : UILabel = UILabel()
+    var restartExperienceButton: UIButton = UIButton(type: .custom)
+    var stackView : UIStackView = UIStackView()
 
     // MARK: - Properties
     
@@ -51,8 +49,7 @@ class StatusViewController: UIViewController {
 	func showMessage(_ text: String, autoHide: Bool = true) {
         // Cancel any previous hide timer.
         messageHideTimer?.invalidate()
-
-        messageLabel.text = text
+        messagePanel.setMessage(text)
 
         // Make sure status is showing.
         setMessageHidden(false, animated: true)
@@ -132,6 +129,76 @@ class StatusViewController: UIViewController {
 	}
 }
 
+// MARK: - Lifecyle
+extension StatusViewController {
+    override func viewDidLoad() {
+        self.setMessageHidden(true, animated: false)
+        setRestartExperienceButton()
+        setStackView()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        stackView.frame = view.bounds
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
+    func statusViewLayout(){
+        messagePanel.translatesAutoresizingMaskIntoConstraints = false
+        restartExperienceButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            restartExperienceButton.widthAnchor.constraint(equalToConstant: 44),
+            restartExperienceButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            restartExperienceButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            messagePanel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            messagePanel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            messagePanel.trailingAnchor.constraint(lessThanOrEqualTo: restartExperienceButton.leadingAnchor, constant: -8)
+
+        ])
+    }
+    
+    func setStackView() {
+        messagePanel.translatesAutoresizingMaskIntoConstraints = false
+        restartExperienceButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 16
+        
+        stackView.addArrangedSubview(messagePanel)
+        stackView.addArrangedSubview(restartExperienceButton)
+        view.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
+    
+    func setRestartExperienceButton(){
+        let imageSize: CGSize = CGSize(width: 40, height: 40)
+        restartExperienceButton.setImage(UIImage(named: "restart"), for: .normal)
+        restartExperienceButton.setImage(UIImage(named: "restartPressed"), for: .selected)
+        
+        restartExperienceButton.imageEdgeInsets = UIEdgeInsets(
+            top: (restartExperienceButton.frame.size.height - imageSize.height) / 2,
+            left: (restartExperienceButton.frame.size.width - imageSize.width) / 2,
+            bottom: (restartExperienceButton.frame.size.height - imageSize.height) / 2,
+            right: (restartExperienceButton.frame.size.width - imageSize.width) / 2
+        )
+    }
+}
+
 extension ARCamera.TrackingState {
     var presentationString: String {
         switch self {
@@ -163,3 +230,5 @@ extension ARCamera.TrackingState {
         }
     }
 }
+
+

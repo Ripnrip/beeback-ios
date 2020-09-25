@@ -28,10 +28,4 @@ class MainCoordinator: Coordinator {
         
     }
     
-    func updateMapLocation() {
-        print("testing")
-        //TODO: do something here with the mapviewController, lookup the coordinate repo stuff from here
-//        tabBarViewController.mapViewController
- }
-    
 }

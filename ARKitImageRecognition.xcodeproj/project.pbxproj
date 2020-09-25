@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07345055251D39EA00F5D955 /* MessagePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07345054251D39EA00F5D955 /* MessagePanelView.swift */; };
 		074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */; };
 		074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */; };
 		074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E3F7924DCB126006D13EA /* SearchBarView.swift */; };
@@ -17,6 +18,8 @@
 		07854D3724E747BC00F9297F /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854D3624E747BC00F9297F /* MapViewViewModel.swift */; };
 		07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */; };
 		07906CD924DB6716007558CF /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */; };
+		07971B25251C45530036B29E /* ViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07971B24251C45530036B29E /* ViewController+ARSCNViewDelegate.swift */; };
+		07971B29251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07971B28251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift */; };
 		07CAE7F924DB8ACE009C1E27 /* LocationContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */; };
 		07CAE7FB24DB8B5B009C1E27 /* LocationContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */; };
 		07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAE7FD24DB8E31009C1E27 /* NibView.swift */; };
@@ -86,6 +89,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07345054251D39EA00F5D955 /* MessagePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePanelView.swift; sourceTree = "<group>"; };
 		074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinAnnotation.swift; sourceTree = "<group>"; };
 		074E3F7924DCB126006D13EA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 		07854D3624E747BC00F9297F /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		07906CD024DB65F4007558CF /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		07906CD824DB6715007558CF /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
+		07971B24251C45530036B29E /* ViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
+		07971B28251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARCoachingOverlayViewDelegate.swift"; sourceTree = "<group>"; };
 		07CAE7F824DB8ACE009C1E27 /* LocationContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationContentView.xib; sourceTree = "<group>"; };
 		07CAE7FA24DB8B5B009C1E27 /* LocationContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationContentView.swift; sourceTree = "<group>"; };
 		07CAE7FD24DB8E31009C1E27 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
@@ -241,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				C41366B81EB80DD400EC054A /* StatusViewController.swift */,
+				07345054251D39EA00F5D955 /* MessagePanelView.swift */,
 			);
 			path = "Additional View Controllers";
 			sourceTree = "<group>";
@@ -299,6 +306,8 @@
 				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
 				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
+				07971B24251C45530036B29E /* ViewController+ARSCNViewDelegate.swift */,
+				07971B28251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift */,
 				1488324B1EFC3EBF0043E0AB /* Additional View Controllers */,
 				1488324C1EFC3ED00043E0AB /* Resources */,
 			);
@@ -714,6 +723,7 @@
 				C41366B91EB80DD400EC054A /* StatusViewController.swift in Sources */,
 				074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */,
 				84577BCC242FDA44005E84AC /* MainCoordinator.swift in Sources */,
+				07345055251D39EA00F5D955 /* MessagePanelView.swift in Sources */,
 				84FDF9DE247E620900C429F4 /* ProfileViewController.swift in Sources */,
 				07CAE7FE24DB8E31009C1E27 /* NibView.swift in Sources */,
 				84577BCE242FDA87005E84AC /* LoginCoordinator.swift in Sources */,
@@ -721,8 +731,10 @@
 				84FDF9DB247E61A200C429F4 /* ProfileCoordinator.swift in Sources */,
 				84FDF9E32480F49800C429F4 /* ProfileTrophesCollectionViewCell.swift in Sources */,
 				074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */,
+				07971B25251C45530036B29E /* ViewController+ARSCNViewDelegate.swift in Sources */,
 				07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */,
 				848C8D842475828800CEFA19 /* String+Extension.swift in Sources */,
+				07971B29251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift in Sources */,
 				07CAE80024DB9E5D009C1E27 /* LocationContentViewModel.swift in Sources */,
 				84FDF9E02480DFAA00C429F4 /* UIColor+Extensions.swift in Sources */,
 				8413650624775E0D00AA8CA9 /* UIImagePickerController+RxCreate.swift in Sources */,
