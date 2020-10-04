@@ -9,10 +9,72 @@
 import ARKit
 
 extension ViewController: ARSCNViewDelegate {
+    
+    /// Creates a new AR configuration to run on the `session`.
+    /// - Tag: ARReferenceImage-Loading
+    func resetTracking() {
+        
+        didDectectPlane = false
+        didGameStart = false
+        focusPlaneSelector.hide()
+        
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
+            fatalError("Missing expected asset catalog resources.")
+        }
+        
+        let configuration = ARWorldTrackingConfiguration()
+        
+        configuration.detectionImages = referenceImages
+        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
 
+        statusViewController.showMessage("Look around to discover nearby items", autoHide: true)
+    }
+    
+    func detectPlane(_ type: ARWorldTrackingConfiguration.PlaneDetection){
+        
+        arTrackingBox.removeFromParentNode()
+        
+        guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: nil) else {
+            fatalError("Missing expected asset catalog resources.")
+        }
+        
+        let configuration = ARWorldTrackingConfiguration()
+        
+        configuration.planeDetection = type
+            activateGuidanceOverlay(automatically: true, forDetectionType: .horizontalPlane)
+
+        configuration.detectionImages = referenceImages
+        session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+
+        
+    }
+    
     // MARK: - ARSCNViewDelegate (Image detection results)
-    /// - Tag: ARImageAnchor-Visualizing
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+        
+        
+        DispatchQueue.main.async {
+            if self.didDectectPlane && !self.didGameStart {
+                self.updateFocusPlaneSelector(isObjectVisible: false)
+            }
+            
+            // If the object selection menu is open, update availability of items
+            }
+        }
+    
+    
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard anchor is ARPlaneAnchor else { return }
+        DispatchQueue.main.async {
+            self.statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
+            self.statusViewController.showMessage("SURFACE DETECTED")
+        }
+    }
+    
+    
+    /// - Tag: ARImageAnchor-Visualizing
+    func rendererBKP(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let imageAnchor = anchor as? ARImageAnchor else { return }
         let referenceImage = imageAnchor.referenceImage
         updateQueue.async {
@@ -67,53 +129,20 @@ extension ViewController: ARSCNViewDelegate {
         }
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
-            
-//            if let statusVC = self.statusViewController {
-//                self.statusViewController.cancelAllScheduledMessages()
-//                self.statusViewController.showMessage("Detected image “\(imageName)”")
-//            }
             self.statusViewController.cancelAllScheduledMessages()
             self.statusViewController.showMessage("Detected image “\(imageName)”")
-            
-//            self.statusViewController.cancelAllScheduledMessages()
-//            self.statusViewController.showMessage("Detected image “\(imageName)”")
         }
     }
     
-    func addNode() {
-        //// General Declarations
-         UIGraphicsBeginImageContextWithOptions(self.sceneView.frame.size, false, 0.0)
-        let context = UIGraphicsGetCurrentContext()!
-        
-        
-        //// Image Declarations
-        let beeBackAR = UIImage(named: "BeeBackAR.png")!
-        
-        //// Picture Drawing
-        let picturePath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 50, height: 50))
-        context.saveGState()
-        picturePath.addClip()
-        context.translateBy(x: 0, y: 0)
-        context.scaleBy(x: 1, y: -1)
-        context.translateBy(x: 0, y: -beeBackAR.size.height)
-        context.draw(beeBackAR.cgImage!, in: CGRect(x: 0, y: 0, width: beeBackAR.size.width, height: beeBackAR.size.height))
-        context.restoreGState()
-        
-        let scnShape = SCNShape(path: picturePath, extrusionDepth: 0.2)
-        let node = SCNNode(geometry: SCNBox(width: 0.2, height: 0.2, length: 0.2, chamferRadius: 0.1/2))
-        //node.geometry = scnShape
-        node.position = SCNVector3(0,0,-0.5)
-        
-        node.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "BeeBackAR.png")!
-        //node.geometry?.firstMaterial?.diffuse.contents = UIColor.orange
-        
+    func addARTrackingBox() {
+//        arTrackingBox.position = SCNVector3(0,-0.2,-0.5)
+        setARTrackingBoxPosition()
         //animate node
         let action = SCNAction.repeatForever(SCNAction.rotate(by: .pi, around: SCNVector3(0, 1, 0), duration: 5))
-        node.runAction(action)
+        arTrackingBox.runAction(action)
         
-        box = node
         self.sceneView.tag = 0
-        self.sceneView.scene.rootNode.addChildNode(box!)
+        self.sceneView.scene.rootNode.addChildNode(arTrackingBox)
         
     }
     
@@ -127,4 +156,25 @@ extension ViewController: ARSCNViewDelegate {
             .removeFromParentNode()
         ])
     }
+    
+    
+    func setARTrackingBoxPosition() {
+        if let query = sceneView.getRaycastQuery(for: .any),
+           let result = sceneView.castRay(for: query).first
+           {
+            self.arTrackingBox.simdWorldTransform = result.worldTransform
+            self.arTrackingBox.simdPosition = result.worldTransform.translation
+        }
+    }
+    
+    func getPositionFromRaycast() -> ARRaycastResult? {
+        guard let camera = session.currentFrame?.camera, case .normal = camera.trackingState,
+              let query = sceneView.getRaycastQuery(for: .horizontal),
+              let result = sceneView.castRay(for: query).first else {
+            print("Failed to get position")
+            return nil
+        }
+        return result
+    }
+    
 }

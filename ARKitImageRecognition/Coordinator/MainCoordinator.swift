@@ -28,4 +28,8 @@ class MainCoordinator: Coordinator {
         
     }
     
+    func resetARTracking() {
+        
+    }
+    
 }

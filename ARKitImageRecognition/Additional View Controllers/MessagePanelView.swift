@@ -54,7 +54,7 @@ class MessagePanelView: UIView {
         addSubview(visualEffectView)
         
         NSLayoutConstraint.activate([
-            visualEffectView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1),
+            visualEffectView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7),
             visualEffectView.widthAnchor.constraint(equalTo: messageLabel.widthAnchor, constant: 16),
             
             visualEffectLabelView.heightAnchor.constraint(equalTo: visualEffectView.contentView.heightAnchor),

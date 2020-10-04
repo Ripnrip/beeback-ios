@@ -13,7 +13,7 @@ import ARKit
  the status of the AR experience, as well as the ability to control restarting
  the experience altogether.
 */
-class StatusViewController: UIViewController, Storyboarded {
+class StatusViewController: UIViewController {
 
     enum MessageType {
         case trackingStateEscalation
@@ -106,13 +106,7 @@ class StatusViewController: UIViewController, Storyboarded {
         timers[.trackingStateEscalation] = timer
     }
     
-    // MARK: - IBActions
-    
-    @IBAction private func restartExperience(_ sender: UIButton) {
-        restartExperienceHandler()
-    }
-	
-	// MARK: - Panel Visibility
+    // MARK: - Panel Visibility
     
 	private func setMessageHidden(_ hide: Bool, animated: Bool) {
         // The panel starts out hidden, so show it before animating opacity.
@@ -127,6 +121,7 @@ class StatusViewController: UIViewController, Storyboarded {
             self.messagePanel.alpha = hide ? 0 : 1
         }, completion: nil)
 	}
+    
 }
 
 // MARK: - Lifecyle
@@ -146,6 +141,7 @@ extension StatusViewController {
         super.viewDidLayoutSubviews()
     }
     
+
     func statusViewLayout(){
         messagePanel.translatesAutoresizingMaskIntoConstraints = false
         restartExperienceButton.translatesAutoresizingMaskIntoConstraints = false
@@ -181,14 +177,15 @@ extension StatusViewController {
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 40)
+            stackView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
     func setRestartExperienceButton(){
-        let imageSize: CGSize = CGSize(width: 40, height: 40)
+        let imageSize: CGSize = CGSize(width: 60, height: 60)
         restartExperienceButton.setImage(UIImage(named: "restart"), for: .normal)
         restartExperienceButton.setImage(UIImage(named: "restartPressed"), for: .selected)
+        restartExperienceButton.imageView?.contentMode = .scaleAspectFill
         
         restartExperienceButton.imageEdgeInsets = UIEdgeInsets(
             top: (restartExperienceButton.frame.size.height - imageSize.height) / 2,
@@ -196,6 +193,12 @@ extension StatusViewController {
             bottom: (restartExperienceButton.frame.size.height - imageSize.height) / 2,
             right: (restartExperienceButton.frame.size.width - imageSize.width) / 2
         )
+        
+        restartExperienceButton.addTarget(self, action: #selector(restartExperience), for: .touchUpInside)
+    }
+    
+    @objc func restartExperience(){
+        restartExperienceHandler()
     }
 }
 

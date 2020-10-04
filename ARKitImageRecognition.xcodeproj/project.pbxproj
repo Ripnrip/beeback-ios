@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070145152523BA7800B4C9D9 /* ViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070145142523BA7800B4C9D9 /* ViewController+Actions.swift */; };
+		072243C2252283D0001A8E83 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072243C1252283D0001A8E83 /* UIImageExtension.swift */; };
 		07345055251D39EA00F5D955 /* MessagePanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07345054251D39EA00F5D955 /* MessagePanelView.swift */; };
 		074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */; };
 		074D337F24E24327007EFF78 /* CustomPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */; };
 		074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E3F7924DCB126006D13EA /* SearchBarView.swift */; };
 		074E3F7C24DCB145006D13EA /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074E3F7B24DCB145006D13EA /* SearchBarView.xib */; };
+		076BE30E251E80110078FED0 /* FocusPlaneSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE30D251E80110078FED0 /* FocusPlaneSelector.swift */; };
+		076BE312251E82470078FED0 /* ARSCNViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE311251E82470078FED0 /* ARSCNViewExtension.swift */; };
+		076BE315251E82800078FED0 /* float4x4Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BE314251E82800078FED0 /* float4x4Extension.swift */; };
 		0770A47224E37C59009F7F65 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0770A47124E37C59009F7F65 /* Location.swift */; };
 		077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F2A2A24D8C30F009C118C /* MapViewController.swift */; };
 		07854D3524E7209100F9297F /* LocationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07854D3424E7209100F9297F /* LocationCollectionViewController.swift */; };
@@ -89,11 +94,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070145142523BA7800B4C9D9 /* ViewController+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Actions.swift"; sourceTree = "<group>"; };
+		072243C1252283D0001A8E83 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		07345054251D39EA00F5D955 /* MessagePanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePanelView.swift; sourceTree = "<group>"; };
 		074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		074D337E24E24327007EFF78 /* CustomPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPinAnnotation.swift; sourceTree = "<group>"; };
 		074E3F7924DCB126006D13EA /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		074E3F7B24DCB145006D13EA /* SearchBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
+		076BE30D251E80110078FED0 /* FocusPlaneSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPlaneSelector.swift; sourceTree = "<group>"; };
+		076BE311251E82470078FED0 /* ARSCNViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSCNViewExtension.swift; sourceTree = "<group>"; };
+		076BE314251E82800078FED0 /* float4x4Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = float4x4Extension.swift; sourceTree = "<group>"; };
 		0770A47124E37C59009F7F65 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ARKitImageRecognition/Map/LocationDataManager/Location.swift; sourceTree = SOURCE_ROOT; };
 		077F2A2A24D8C30F009C118C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		07854D3424E7209100F9297F /* LocationCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +199,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		073A97CA251D7EE7002DB8F8 /* ARViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
+				070145142523BA7800B4C9D9 /* ViewController+Actions.swift */,
+				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
+				07971B24251C45530036B29E /* ViewController+ARSCNViewDelegate.swift */,
+				07971B28251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift */,
+				076BE30C251E7FBD0078FED0 /* ARObject */,
+				072243C1252283D0001A8E83 /* UIImageExtension.swift */,
+			);
+			path = ARViewController;
+			sourceTree = "<group>";
+		};
 		074D337D24E242E7007EFF78 /* CustomPinAnnotation */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +236,16 @@
 				074D337B24E1EA64007EFF78 /* UIView+Extensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		076BE30C251E7FBD0078FED0 /* ARObject */ = {
+			isa = PBXGroup;
+			children = (
+				076BE30D251E80110078FED0 /* FocusPlaneSelector.swift */,
+				076BE311251E82470078FED0 /* ARSCNViewExtension.swift */,
+				076BE314251E82800078FED0 /* float4x4Extension.swift */,
+			);
+			path = ARObject;
 			sourceTree = "<group>";
 		};
 		077F2A2924D8C2C8009C118C /* Map */ = {
@@ -290,6 +324,7 @@
 		3929C48A1E89EC2C00E00B60 /* ARKitImageRecognition */ = {
 			isa = PBXGroup;
 			children = (
+				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
 				077F2A2924D8C2C8009C118C /* Map */,
 				84FDF9DC247E61F600C429F4 /* Profile */,
 				844DD1C2247A33F500DDB649 /* Service */,
@@ -303,11 +338,7 @@
 				849220BB2410CE6900109141 /* CustomTabBar */,
 				8411BB7220CDFD5C009E37AD /* ARCup */,
 				8473A7AD2076A9A800A34F59 /* art.scnassets */,
-				3929C48B1E89EC2C00E00B60 /* AppDelegate.swift */,
-				3929C48D1E89EC2C00E00B60 /* ViewController.swift */,
-				C8C12A701F29277B00B011FE /* ViewController+ARSessionDelegate.swift */,
-				07971B24251C45530036B29E /* ViewController+ARSCNViewDelegate.swift */,
-				07971B28251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift */,
+				073A97CA251D7EE7002DB8F8 /* ARViewController */,
 				1488324B1EFC3EBF0043E0AB /* Additional View Controllers */,
 				1488324C1EFC3ED00043E0AB /* Resources */,
 			);
@@ -732,6 +763,7 @@
 				84FDF9E32480F49800C429F4 /* ProfileTrophesCollectionViewCell.swift in Sources */,
 				074D337C24E1EA64007EFF78 /* UIView+Extensions.swift in Sources */,
 				07971B25251C45530036B29E /* ViewController+ARSCNViewDelegate.swift in Sources */,
+				076BE312251E82470078FED0 /* ARSCNViewExtension.swift in Sources */,
 				07906CD124DB65F4007558CF /* LocationCollectionViewCell.swift in Sources */,
 				848C8D842475828800CEFA19 /* String+Extension.swift in Sources */,
 				07971B29251C49FF0036B29E /* ViewController+ARCoachingOverlayViewDelegate.swift in Sources */,
@@ -741,6 +773,7 @@
 				8493FB2D2443FA4400083350 /* UIColor+Extension.swift in Sources */,
 				077F2A2B24D8C30F009C118C /* MapViewController.swift in Sources */,
 				8493FB2B2443F8CE00083350 /* TutorialViewController.swift in Sources */,
+				076BE315251E82800078FED0 /* float4x4Extension.swift in Sources */,
 				84577BC8242FD7D4005E84AC /* Storyboard+Extensions.swift in Sources */,
 				07F8B04524FD7D52000872C3 /* MapDataSource.swift in Sources */,
 				8431DE2F2484FF2F003FA0DB /* LoginViewModel.swift in Sources */,
@@ -755,10 +788,13 @@
 				074E3F7A24DCB126006D13EA /* SearchBarView.swift in Sources */,
 				84577BD0242FE21A005E84AC /* LoginNavigatonViewController.swift in Sources */,
 				3929C48C1E89EC2C00E00B60 /* AppDelegate.swift in Sources */,
+				070145152523BA7800B4C9D9 /* ViewController+Actions.swift in Sources */,
+				072243C2252283D0001A8E83 /* UIImageExtension.swift in Sources */,
 				07CAE7FB24DB8B5B009C1E27 /* LocationContentView.swift in Sources */,
 				8431DE2D2484F9FE003FA0DB /* OnboardingViewModel.swift in Sources */,
 				848C8D822475780300CEFA19 /* UIImage+Extensions.swift in Sources */,
 				84577BC5242FD5AA005E84AC /* Coordinator.swift in Sources */,
+				076BE30E251E80110078FED0 /* FocusPlaneSelector.swift in Sources */,
 				846AC1A224776110003184DF /* RxMediaPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,7 +864,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -882,7 +918,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
