@@ -13,12 +13,27 @@ extension ViewController: ARSessionDelegate {
     
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         statusViewController.showTrackingQualityInfo(for: camera.trackingState, autoHide: true)
+        print("trackingState change to : \(camera.trackingState)")
         
         switch camera.trackingState {
         case .notAvailable, .limited:
             statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
         case .normal:
+            
+            print(" ")
+            print("++++++++++++++++  sceneView Point of View  ++++++++++++++++")
+            print("Position:         \(sceneView.pointOfView!.position)")
+            print("Orientation:      \(sceneView.pointOfView!.orientation)")
+
+            print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print(" ")
+            
+            
             statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
+            if !didDectectPlane {
+                statusViewController.showMessage("Click the box to find plane", autoHide: true)
+                self.addARTrackingBox()
+            }
         }
     }
     
@@ -38,6 +53,12 @@ extension ViewController: ARSessionDelegate {
         DispatchQueue.main.async {
             self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
         }
+    }
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        guard let lightEstimate = frame.lightEstimate else { return }
+        ambientLightNode?.light?.intensity = lightEstimate.ambientIntensity * 0.4
+        directionalLightNode?.light?.intensity = lightEstimate.ambientIntensity
     }
     
     func sessionWasInterrupted(_ session: ARSession) {

@@ -24,7 +24,7 @@ class TutorialViewController: UIViewController, Storyboarded, PaperOnboardingDel
         view.addSubview(onboarding)
 
         // add constraints
-        for attribute: NSLayoutAttribute in [.left, .right, .top, .bottom] {
+        for attribute: NSLayoutConstraint.Attribute in [.left, .right, .top, .bottom] {
           let constraint = NSLayoutConstraint(item: onboarding,
                                               attribute: attribute,
                                               relatedBy: .equal,

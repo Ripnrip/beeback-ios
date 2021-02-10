@@ -22,7 +22,7 @@ extension Storyboarded where Self: UIViewController {
         let className = fullName.components(separatedBy: ".")[1]
 
         let bundle = Bundle(for: self.classForCoder())
-
+        
         // load our storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
 

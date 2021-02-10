@@ -12,15 +12,24 @@ import UIKit
 class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+    var tabBarViewController: PTTabBarViewController?
+    //TODO: add a location repository and make it part of the initializer
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        
     }
 
     func start() {
-        let vc = PTTabBarViewController.instantiate()
-        //let vc = ProfileViewController.instantiate()
-
-        navigationController.pushViewController(vc, animated: false)
+        tabBarViewController = PTTabBarViewController.instantiate()
+        tabBarViewController?.coordinator = self
+        
+        navigationController.pushViewController(tabBarViewController!, animated: false)
+        
     }
+    
+    func resetARTracking() {
+        
+    }
+    
 }

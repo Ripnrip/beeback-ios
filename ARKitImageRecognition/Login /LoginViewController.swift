@@ -100,7 +100,7 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
             if let error = error {
                 //self.showMessagePrompt(error.localizedDescription)
                 print(error.localizedDescription)
-                self.alert(title: "Error",
+                self.rx.alert(title: "Error",
                 message: error.localizedDescription)
                 .subscribe()
                 .disposed(by: self.disposeBag)
@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                   guard error == nil else {
                       // Error occurred
                       print(error!.localizedDescription)
-                      self.alert(title: "Error", message: error?.localizedDescription)
+                    self.rx.alert(title: "Error", message: error?.localizedDescription)
                       .subscribe()
                       .disposed(by: self.disposeBag)
                       return
@@ -147,7 +147,7 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                   // Check for cancel
                   guard let result = result, !result.isCancelled else {
                       print("User cancelled login")
-                    self.alert(title: "Error", message: "User cancelled login")
+                    self.rx.alert(title: "Error", message: "User cancelled login")
                     .subscribe()
                     .disposed(by: self.disposeBag)
                       return
@@ -190,7 +190,7 @@ class LoginViewController: UIViewController, Storyboarded, FUIAuthDelegate {
                     }
                     else {
                         print("error \(error)")
-                        self.alert(title: "Error", message: error?.localizedDescription)
+                        self.rx.alert(title: "Error", message: error?.localizedDescription)
                         .subscribe()
                         .disposed(by: self.disposeBag)
                     }

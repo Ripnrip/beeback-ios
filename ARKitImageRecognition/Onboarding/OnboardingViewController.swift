@@ -119,7 +119,7 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
     
     func moveDown(duration: TimeInterval) {
         DispatchQueue.main.async {
-            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            UIView.animate(withDuration: duration, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.scrollView.contentOffset.y = CGFloat(self.emailTextField.frame.origin.y - 50)
             }, completion: nil)
         }
@@ -202,7 +202,7 @@ class OnboardingViewController: UIViewController, Storyboarded, RxMediaPickerDel
                     self.coordinator?.userFinishedSetup()
                 } else {
                     //username has been taken before
-                    self.alert(title: "Error", message: "That username is taken, please try another one")
+                    self.rx.alert(title: "Error", message: "That username is taken, please try another one")
                     .subscribe()
                     .disposed(by: self.disposeBag)
                     
